@@ -1,0 +1,12 @@
+<?php
+
+declare(strict_types=1);
+
+namespace DevAway\KartCompetition\Competition\Domain\ValueObject;
+
+use DevAway\KartCompetition\Shared\Domain\ValueObject\StringValueObject;
+
+class Time extends StringValueObject
+{
+    //TODO. IMPLEMENTAR UNA VALIDACION PARA EL TIME
+}
