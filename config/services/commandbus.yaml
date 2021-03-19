@@ -1,0 +1,7 @@
+services:
+  _defaults:
+    autowire: true
+    autoconfigure: true
+
+  DevAway\KartCompetition\Shared\Domain\Bus\CommandBus:
+    class: 'DevAway\KartCompetition\Shared\Infrastructure\Bus\TacticianCommandBus'

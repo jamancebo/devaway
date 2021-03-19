@@ -5,13 +5,22 @@
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
 
+imports:
+    - { resource: services/commandbus.yaml }
+
 services:
-    # default configuration for services in *this* file
     _defaults:
-        autowire: true      # Automatically injects dependencies in your services.
-        autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
+        autowire: true
+        autoconfigure: true
+        public: false
 
     DevAway\KartCompetition\Competition\Infraestructure\EntryPoint\Controller\:
         resource: '../src/KartCompetition/Competition/Infraestructure/EntryPoint/Controller'
         tags: ['controller.service_arguments']
+
+    DevAway\KartCompetition\Competition\Application\:
+        resource: '../src/KartCompetition/Competition/Application'
+        exclude: '../src/KartCompetition/Competition/Application/{Command}'
+
+
 

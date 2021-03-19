@@ -10,7 +10,7 @@ use DevAway\KartCompetition\Competition\Domain\ValueObject\Points;
 use DevAway\KartCompetition\Competition\Domain\ValueObject\RaceName;
 use DevAway\KartCompetition\Competition\Domain\ValueObject\Time;
 
-class Race
+class Race extends \DevAway\KartCompetition\Shared\Domain\Aggregate\AggregateRoot
 {
     private ID $id;
     private Time $time;

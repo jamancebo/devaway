@@ -7,6 +7,10 @@
         "php": "^7.4",
         "ext-ctype": "*",
         "ext-iconv": "*",
+        "doctrine/annotations": "^1.12",
+        "doctrine/doctrine-bundle": "^2.2",
+        "doctrine/doctrine-migrations-bundle": "^3.0",
+        "doctrine/orm": "^2.8",
         "fakerphp/faker": "^1.13",
         "league/tactician-bundle": "^1.3",
         "mockery/mockery": "^1.4",
@@ -25,6 +29,7 @@
         "codeception/module-phpbrowser": "^1.0",
         "codeception/module-rest": "^1.2",
         "codeception/module-symfony": "^2.0",
+        "doctrine/doctrine-fixtures-bundle": "^3.4",
         "phpunit/phpunit": "^9",
         "symfony/phpunit-bridge": "^5.2",
         "symfony/web-profiler-bundle": "5.2.*"
