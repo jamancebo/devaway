@@ -1,0 +1,7 @@
+services:
+  _defaults:
+    public: true
+
+  DevAway\KartCompetition\Competition\Domain\Repository\RaceRepository:
+    class: 'DevAway\KartCompetition\Competition\Infrastructure\Repository\MysqlRaceRepository'
+    arguments: ['@doctrine.orm.entity_manager']

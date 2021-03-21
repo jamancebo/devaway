@@ -12,9 +12,9 @@ use DevAway\KartCompetition\Competition\Domain\ValueObject\IdPilot;
 interface RaceRepository
 {
     /**
-     * @param Race $Race
+     * @param Race $race
      */
-    public function create(Race $Race): void;
+    public function create(Race $race): void;
 
     /**
      * @param Id $id

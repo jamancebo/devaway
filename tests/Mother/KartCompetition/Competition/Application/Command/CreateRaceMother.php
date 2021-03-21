@@ -43,7 +43,7 @@ class CreateRaceMother
     public static function random()
     {
         return self::create(
-            IdMother::random()->toBinary(),
+            IdMother::random()->value(),
             TimeMother::random()->value(),
             PointsMother::random()->value(),
             RaceNameMother::random()->value(),

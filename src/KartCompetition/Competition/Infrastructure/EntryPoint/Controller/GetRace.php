@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace DevAway\KartCompetition\Competition\Infraestructure\EntryPoint\Controller;
+namespace DevAway\KartCompetition\Competition\Infrastructure\EntryPoint\Controller;
 
 use League\Tactician\CommandBus;
 use Symfony\Component\HttpFoundation\JsonResponse;

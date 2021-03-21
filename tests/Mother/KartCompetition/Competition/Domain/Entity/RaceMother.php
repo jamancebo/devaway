@@ -19,7 +19,7 @@ use DevAway\Tests\Mother\KartCompetition\Competition\Domain\ValueObject\TimeMoth
 class RaceMother
 {
     /**
-     * @param Id $id
+     * @param Id|null $id
      * @param Time $time
      * @param Points $points
      * @param RaceName $name
@@ -28,7 +28,7 @@ class RaceMother
      * @return Race
      */
     public static function create(
-        Id $id,
+        ?Id $id,
         Time $time,
         Points $points,
         RaceName $name,

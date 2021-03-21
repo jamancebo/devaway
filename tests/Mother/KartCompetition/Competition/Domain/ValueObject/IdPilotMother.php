@@ -10,12 +10,12 @@ use Faker\Factory;
 class IdPilotMother
 {
     /**
-     * @param int $idPilot
+     * @param string $idPilot
      * @return IdPilot
      */
-    public static function create(int $idPilot): IdPilot
+    public static function create(string $idPilot): IdPilot
     {
-        return IdPilot::fromInt($idPilot);
+        return IdPilot::fromString($idPilot);
     }
 
     /**
@@ -24,6 +24,6 @@ class IdPilotMother
     public static function random(): IdPilot
     {
         $faker = Factory::create('es_ES');
-        return self::create($faker->randomNumber());
+        return self::create($faker->uuid);
     }
 }

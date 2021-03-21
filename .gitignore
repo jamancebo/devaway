@@ -16,10 +16,7 @@
 /phpunit.xml
 ###< symfony/phpunit-bridge ###
 
-###> phpunit/phpunit ###
-/phpunit.xml
-.phpunit.result.cache
-###< phpunit/phpunit ###
+/migrations/
 
 ###> squizlabs/php_codesniffer ###
 /.phpcs-cache

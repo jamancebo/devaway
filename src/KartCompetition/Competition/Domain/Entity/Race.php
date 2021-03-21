@@ -9,10 +9,11 @@ use DevAway\KartCompetition\Competition\Domain\ValueObject\IdPilot;
 use DevAway\KartCompetition\Competition\Domain\ValueObject\Points;
 use DevAway\KartCompetition\Competition\Domain\ValueObject\RaceName;
 use DevAway\KartCompetition\Competition\Domain\ValueObject\Time;
+use DevAway\KartCompetition\Shared\Domain\Aggregate\AggregateRoot;
 
-class Race extends \DevAway\KartCompetition\Shared\Domain\Aggregate\AggregateRoot
+class Race extends AggregateRoot
 {
-    private ID $id;
+    private ?Id $id;
     private Time $time;
     private Points $points;
     private RaceName $name;
@@ -21,7 +22,7 @@ class Race extends \DevAway\KartCompetition\Shared\Domain\Aggregate\AggregateRoo
 
     /**
      * Race constructor.
-     * @param Id $id
+     * @param Id|null $id
      * @param Time $time
      * @param Points $points
      * @param RaceName $name
@@ -29,7 +30,7 @@ class Race extends \DevAway\KartCompetition\Shared\Domain\Aggregate\AggregateRoo
      * @param Time $bestTime
      */
     public function __construct(
-        ID $id,
+        ?Id $id,
         Time $time,
         Points $points,
         RaceName $name,
@@ -45,7 +46,7 @@ class Race extends \DevAway\KartCompetition\Shared\Domain\Aggregate\AggregateRoo
     }
 
     /**
-     * @param Id $id
+     * @param Id|null $id
      * @param Time $time
      * @param Points $points
      * @param RaceName $name
@@ -54,7 +55,7 @@ class Race extends \DevAway\KartCompetition\Shared\Domain\Aggregate\AggregateRoo
      * @return static
      */
     public static function instantiate(
-        ID $id,
+        ?Id $id,
         Time $time,
         Points $points,
         RaceName $name,
@@ -65,9 +66,9 @@ class Race extends \DevAway\KartCompetition\Shared\Domain\Aggregate\AggregateRoo
     }
 
     /**
-     * @return Id
+     * @return Id|null
      */
-    public function id(): Id
+    public function id(): ?Id
     {
         return $this->id;
     }

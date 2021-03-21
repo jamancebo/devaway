@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace DevAway\Tests\Functional\KartCompetition\Competition\Infraestructure\EntryPoint\Controller;
+namespace DevAway\Tests\Functional\KartCompetition\Competition\Infrastructure\EntryPoint\Controller;
 
 use FunctionalTester;
 

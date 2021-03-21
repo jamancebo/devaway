@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace DevAway\KartCompetition\Competition\Infraestructure\Repository;
+namespace DevAway\KartCompetition\Competition\Infrastructure\Repository;
 
 use DevAway\KartCompetition\Competition\Domain\Entity\Race;
 use DevAway\KartCompetition\Competition\Domain\Repository\RaceRepository;
@@ -11,7 +11,7 @@ use DevAway\KartCompetition\Competition\Domain\ValueObject\IdPilot;
 use DevAway\KartCompetition\Shared\Infrastructure\Repository\Doctrine\DoctrineRepository;
 use Doctrine\ORM\EntityManager;
 
-class MysqlCompanyRepository extends DoctrineRepository implements RaceRepository
+class MysqlRaceRepository extends DoctrineRepository implements RaceRepository
 {
     /**
      * @param EntityManager $entityManager
@@ -24,9 +24,9 @@ class MysqlCompanyRepository extends DoctrineRepository implements RaceRepositor
     /**
      * @inheritDoc
      */
-    public function create(Race $Race): void
+    public function create(Race $race): void
     {
-        $this->persist($Race);
+        $this->persist($race);
     }
 
     /**
