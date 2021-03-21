@@ -11,10 +11,14 @@ use DevAway\KartCompetition\Competition\Domain\ValueObject\Points;
 use DevAway\KartCompetition\Competition\Domain\ValueObject\RaceName;
 use DevAway\KartCompetition\Competition\Domain\ValueObject\Time;
 use DevAway\Tests\Integration\KartCompetition\Competition\Infrastructure\PhpUnit\CompetitionModuleIntegrationTestCase;
+use DevAway\Tests\Mother\KartCompetition\Competition\Domain\Criteria\CriteriaMother;
+use DevAway\Tests\Mother\KartCompetition\Competition\Domain\Criteria\FilterMother;
+use DevAway\Tests\Mother\KartCompetition\Competition\Domain\Criteria\FiltersMother;
 use DevAway\Tests\Mother\KartCompetition\Competition\Domain\Entity\RaceMother;
 
 class RaceRepositoryTest extends CompetitionModuleIntegrationTestCase
 {
+    public const ID = '203513b1-0836-360f-a4af-c25b6cf31c51' ;
     public function testFindAndCreate()
     {
         $race = RaceMother::random();
@@ -37,5 +41,37 @@ class RaceRepositoryTest extends CompetitionModuleIntegrationTestCase
         $this->assertEquals($race->name()->value(), $createdRace->name()->value());
         $this->assertEquals($race->time()->value(), $createdRace->time()->value());
         $this->assertEquals($race->bestTime()->value(), $createdRace->bestTime()->value());
+    }
+
+    public function testGetRacesList()
+    {
+        $criteria = CriteriaMother::create(
+            FiltersMother::create([
+                FilterMother::create('id', self::ID)
+            ])
+        );
+
+        $races = $this->repository()->findBy($criteria);
+
+        foreach ($races as $race) {
+            $this->assertInstanceOf(Id::class, $race->id());
+            $this->assertInstanceOf(IdPilot::class, $race->idPilot());
+            $this->assertInstanceOf(Points::class, $race->points());
+            $this->assertInstanceOf(RaceName::class, $race->name());
+            $this->assertInstanceOf(Time::class, $race->bestTime());
+            $this->assertInstanceOf(Time::class, $race->time());
+        }
+    }
+
+    public function testGetRace()
+    {
+        $race = $this->repository()->find(Id::fromString(self::ID));
+
+        $this->assertInstanceOf(Id::class, $race->id());
+        $this->assertInstanceOf(IdPilot::class, $race->idPilot());
+        $this->assertInstanceOf(Points::class, $race->points());
+        $this->assertInstanceOf(RaceName::class, $race->name());
+        $this->assertInstanceOf(Time::class, $race->bestTime());
+        $this->assertInstanceOf(Time::class, $race->time());
     }
 }

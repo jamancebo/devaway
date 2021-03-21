@@ -44,4 +44,27 @@ class CompetitionModuleUnitCase extends UnitTestCase
             ->shouldReceive('create')
             ->once();
     }
+
+    /**
+     * @param array $races
+     * @return void
+     */
+    public function shouldFindListRaces(array $races): void
+    {
+        $this->raceRepository()
+            ->shouldReceive('findBy')
+            ->once()
+            ->andReturn($races);
+    }
+
+    /**
+     * @return void
+     */
+    public function shouldNotFindByRaces(): void
+    {
+        $this->raceRepository()
+            ->shouldReceive('findBy')
+            ->once()
+            ->andReturn([]);
+    }
 }

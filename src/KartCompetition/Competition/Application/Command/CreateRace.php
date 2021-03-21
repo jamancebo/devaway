@@ -6,22 +6,11 @@ namespace DevAway\KartCompetition\Competition\Application\Command;
 
 class CreateRace
 {
-    /** @var string */
     private string $id;
-
-    /** @var string */
     private string $time;
-
-    /** @var int */
     private int $points;
-
-    /** @var string */
     private string $name;
-
-    /** @var string */
     private string $idPilot;
-
-    /** @var string */
     private string $bestTime;
 
     /**

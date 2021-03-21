@@ -37,7 +37,7 @@ abstract class IntegerCustomType extends IntegerType
         if (is_integer($value)) {
             return $this->typeClassName()::fromInt($value);
         }
-        return $this->typeClassName()::fromString($value);
+        return $this->typeClassName()::fromInt(intval($value));
     }
 
     /**

@@ -59,4 +59,16 @@ class RaceMother
             TimeMother::random()
         );
     }
+
+    /**
+     * @param int $race
+     * @return Race[]
+     */
+    public static function randomArray(int $race = 1): array
+    {
+        return array_map(
+            fn() => static::random(),
+            array_fill(0, $race, null)
+        );
+    }
 }
