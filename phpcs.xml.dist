@@ -8,12 +8,15 @@
     <arg name="colors"/>
     <arg name="extensions" value="php"/>
 
-    <rule ref="PSR2"/>
+    <rule ref="PSR12"/>
+    <rule ref="PSR2.Methods.MethodDeclaration.Underscore">
+        <exclude-pattern>tests/Functional/</exclude-pattern>
+    </rule>
 
-    <file>bin/</file>
-    <file>config/</file>
-    <file>public/</file>
     <file>src/</file>
-    <file>tests/</file>
+    <file>tests/Unit/</file>
+    <file>tests/Integration/</file>
+    <file>tests/Functional/</file>
+    <file>tests/Mother/</file>
 
 </ruleset>

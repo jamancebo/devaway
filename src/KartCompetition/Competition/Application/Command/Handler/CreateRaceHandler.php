@@ -32,7 +32,7 @@ class CreateRaceHandler
      * @return Race
      * @throws RaceExists
      */
-    public function handler(CreateRace $command): Race
+    public function handle(CreateRace $command): Race
     {
         $foundRace = $this->repository->find(Id::fromString($command->id()));
 

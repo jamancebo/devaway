@@ -25,7 +25,7 @@ class CreateRaceTest extends CompetitionModuleUnitCase
         $this->shouldNotFindRace();
         $this->shouldCreateRace();
 
-        $createdRace = $this->handler->handler($command);
+        $createdRace = $this->handler->handle($command);
 
         $this->assertEquals($command->id(), $createdRace->id()->value());
         $this->assertEquals($command->time(), $createdRace->time()->value());

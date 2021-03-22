@@ -38,5 +38,4 @@ class AggregateRoot
     {
         $this->recordedEvents[] = $event;
     }
-
 }

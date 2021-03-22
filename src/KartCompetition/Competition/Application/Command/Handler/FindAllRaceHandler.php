@@ -29,7 +29,7 @@ class FindAllRaceHandler
      * @param ListRacesByCriteria $command
      * @return Race
      */
-    public function handler(ListRacesByCriteria $command): array
+    public function handle(ListRacesByCriteria $command): array
     {
         $criteria = $this->getCriteria(
             $command->filters(),

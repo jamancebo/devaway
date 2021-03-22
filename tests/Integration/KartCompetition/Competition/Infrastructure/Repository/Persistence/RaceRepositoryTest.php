@@ -18,7 +18,7 @@ use DevAway\Tests\Mother\KartCompetition\Competition\Domain\Entity\RaceMother;
 
 class RaceRepositoryTest extends CompetitionModuleIntegrationTestCase
 {
-    public const ID = '203513b1-0836-360f-a4af-c25b6cf31c51' ;
+    public const ID = '6612f063-aa47-3fe4-8bc2-148ce1268c1e' ;
     public function testFindAndCreate()
     {
         $race = RaceMother::random();

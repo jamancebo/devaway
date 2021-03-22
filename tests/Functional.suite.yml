@@ -5,4 +5,11 @@ modules:
               app_path: 'src'
               environment: 'test'
               kernel_class: 'DevAway\Kernel'
+        - REST:
+            url: /
+            depends: Symfony
         - Asserts
+coverage:
+  enabled: true
+  include:
+    - src/KartCompetition/Competition/Infrastructure/EntryPoint/*

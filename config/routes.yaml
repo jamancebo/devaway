@@ -1,6 +1,6 @@
 get_race:
   path: /{version}/race/{id}
-  controller: DevAway\KartCompetition\Competition\Infrastructure\EntryPoint\Controller\GetRace
+  controller: DevAway\KartCompetition\Competition\Infrastructure\EntryPoint\Controller\GetRaces
   methods: GET
   requirements:
     version: v1

@@ -61,7 +61,7 @@ class Race extends AggregateRoot
         RaceName $name,
         IdPilot $idPilot,
         Time $bestTime
-    ) : self {
+    ): self {
         return new self($id, $time, $points, $name, $idPilot, $bestTime);
     }
 

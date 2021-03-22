@@ -28,7 +28,7 @@ class ListRaceByCriteriaTest extends CompetitionModuleUnitCase
 
         $this->shouldFindListRaces(RaceMother::randomArray(2));
 
-        $list = $this->handler->handler($command);
+        $list = $this->handler->handle($command);
 
         $this->assertIsArray($list);
         foreach ($list as $race) {
@@ -43,6 +43,6 @@ class ListRaceByCriteriaTest extends CompetitionModuleUnitCase
 
         $this->shouldNotFindByRaces();
 
-        $list = $this->handler->handler(ListRaceMother::random());
+        $list = $this->handler->handle(ListRaceMother::random());
     }
 }
