@@ -6,7 +6,6 @@ namespace DevAway\KartCompetition\Competition\Application\Command;
 
 class CreateRace
 {
-    private string $id;
     private string $time;
     private int $points;
     private string $name;
@@ -15,7 +14,6 @@ class CreateRace
 
     /**
      * CreateRace constructor.
-     * @param string $id
      * @param string $time
      * @param int $points
      * @param string $name
@@ -23,27 +21,17 @@ class CreateRace
      * @param string $bestTime
      */
     public function __construct(
-        string $id,
         string $time,
         int $points,
         string $name,
         string $idPilot,
         string $bestTime
     ) {
-        $this->id = $id;
         $this->time = $time;
         $this->points = $points;
         $this->name = $name;
         $this->idPilot = $idPilot;
         $this->bestTime = $bestTime;
-    }
-
-    /**
-     * @return string
-     */
-    public function id(): string
-    {
-        return $this->id;
     }
 
     /**

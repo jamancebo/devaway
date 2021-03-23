@@ -13,6 +13,8 @@ use DevAway\KartCompetition\Competition\Domain\ValueObject\IdPilot;
 use DevAway\KartCompetition\Competition\Domain\ValueObject\Points;
 use DevAway\KartCompetition\Competition\Domain\ValueObject\RaceName;
 use DevAway\KartCompetition\Competition\Domain\ValueObject\Time;
+use DevAway\KartCompetition\Shared\Domain\Criteria\Criteria;
+use DevAway\KartCompetition\Shared\Domain\Criteria\Filters;
 
 class CreateRaceHandler
 {
@@ -34,14 +36,16 @@ class CreateRaceHandler
      */
     public function handle(CreateRace $command): Race
     {
-        $foundRace = $this->repository->find(Id::fromString($command->id()));
+        $filters = ['name' => $command->name(), 'idPilot' => $command->idPilot()];
+        $criteria = Criteria::create(Filters::fromValues($filters));
+        $foundRace = $this->repository->findBy($criteria);
 
-        if (isset($foundRace)) {
+        if (!empty($foundRace)) {
             throw new RaceExists();
         }
 
         $race = Race::instantiate(
-            Id::fromString($command->id()),
+            Id::random(),
             Time::fromString($command->time()),
             Points::fromInt($command->points()),
             RaceName::fromString($command->name()),

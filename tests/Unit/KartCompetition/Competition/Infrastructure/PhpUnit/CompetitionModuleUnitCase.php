@@ -30,9 +30,8 @@ class CompetitionModuleUnitCase extends UnitTestCase
     public function shouldNotFindRace(): void
     {
         $this->raceRepository()
-            ->shouldReceive('find')
-            ->once()
-            ->andReturn(null);
+            ->shouldReceive('findBy')
+            ->once();
     }
 
     /**

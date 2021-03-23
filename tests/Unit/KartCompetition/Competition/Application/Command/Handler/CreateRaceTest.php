@@ -27,7 +27,6 @@ class CreateRaceTest extends CompetitionModuleUnitCase
 
         $createdRace = $this->handler->handle($command);
 
-        $this->assertEquals($command->id(), $createdRace->id()->value());
         $this->assertEquals($command->time(), $createdRace->time()->value());
         $this->assertEquals($command->name(), $createdRace->name()->value());
         $this->assertEquals($command->points(), $createdRace->points()->value());

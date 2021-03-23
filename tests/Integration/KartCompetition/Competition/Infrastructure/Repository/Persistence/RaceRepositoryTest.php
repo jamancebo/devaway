@@ -10,6 +10,7 @@ use DevAway\KartCompetition\Competition\Domain\ValueObject\IdPilot;
 use DevAway\KartCompetition\Competition\Domain\ValueObject\Points;
 use DevAway\KartCompetition\Competition\Domain\ValueObject\RaceName;
 use DevAway\KartCompetition\Competition\Domain\ValueObject\Time;
+use DevAway\Tests\Integration\KartCompetition\Competition\Infrastructure\DataFixtures\RaceFixture;
 use DevAway\Tests\Integration\KartCompetition\Competition\Infrastructure\PhpUnit\CompetitionModuleIntegrationTestCase;
 use DevAway\Tests\Mother\KartCompetition\Competition\Domain\Criteria\CriteriaMother;
 use DevAway\Tests\Mother\KartCompetition\Competition\Domain\Criteria\FilterMother;
@@ -18,7 +19,6 @@ use DevAway\Tests\Mother\KartCompetition\Competition\Domain\Entity\RaceMother;
 
 class RaceRepositoryTest extends CompetitionModuleIntegrationTestCase
 {
-    public const ID = '6612f063-aa47-3fe4-8bc2-148ce1268c1e' ;
     public function testFindAndCreate()
     {
         $race = RaceMother::random();
@@ -47,7 +47,7 @@ class RaceRepositoryTest extends CompetitionModuleIntegrationTestCase
     {
         $criteria = CriteriaMother::create(
             FiltersMother::create([
-                FilterMother::create('id', self::ID)
+                FilterMother::create('id', RaceFixture::ID)
             ])
         );
 
@@ -65,7 +65,7 @@ class RaceRepositoryTest extends CompetitionModuleIntegrationTestCase
 
     public function testGetRace()
     {
-        $race = $this->repository()->find(Id::fromString(self::ID));
+        $race = $this->repository()->find(Id::fromString(RaceFixture::ID));
 
         $this->assertInstanceOf(Id::class, $race->id());
         $this->assertInstanceOf(IdPilot::class, $race->idPilot());

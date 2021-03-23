@@ -10,11 +10,32 @@ use Doctrine\DBAL\Exception;
 
 class CompetitionModuleIntegrationTestCase extends IntegrationTestCase
 {
+    private RaceRepository $raceRepository;
+    /**
+     * @return void
+     */
+    public function setUp(): void
+    {
+        parent::setUp();
+        $this->loadFixtures();
+    }
+
+    /**
+     * @return void
+     */
+    public function tearDown(): void
+    {
+        parent::tearDown();
+        $this->purge();
+    }
+
     /**
      * @return RaceRepository
      */
     public function repository(): RaceRepository
     {
-        return $this->service(RaceRepository::class);
+        if (empty($this->raceRepository)) {
+            return $this->service(RaceRepository::class);
+        }
     }
 }

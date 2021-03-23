@@ -14,7 +14,6 @@ use DevAway\Tests\Mother\KartCompetition\Competition\Domain\ValueObject\TimeMoth
 class CreateRaceMother
 {
     /**
-     * @param string $id
      * @param string $time
      * @param int $points
      * @param string $name
@@ -23,7 +22,6 @@ class CreateRaceMother
      * @return CreateRace
      */
     public static function create(
-        string $id,
         string $time,
         int $points,
         string $name,
@@ -31,7 +29,6 @@ class CreateRaceMother
         string $bestTime
     ): CreateRace {
         return new CreateRace(
-            $id,
             $time,
             $points,
             $name,
@@ -43,7 +40,6 @@ class CreateRaceMother
     public static function random()
     {
         return self::create(
-            IdMother::random()->value(),
             TimeMother::random()->value(),
             PointsMother::random()->value(),
             RaceNameMother::random()->value(),
