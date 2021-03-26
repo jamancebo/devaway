@@ -10,12 +10,12 @@ use Faker\Factory;
 class PointsMother
 {
     /**
-     * @param int $externalId
+     * @param int $points
      * @return Points
      */
-    public static function create(int $externalId): Points
+    public static function create(int $points): Points
     {
-        return Points::fromInt($externalId);
+        return Points::fromInt($points);
     }
 
     /**
