@@ -12,6 +12,10 @@ doctrine:
             PointsType: DevAway\KartCompetition\Competition\Infrastructure\Repository\Persistence\Doctrine\CustomType\Competition\PointsType
             RaceNameType: DevAway\KartCompetition\Competition\Infrastructure\Repository\Persistence\Doctrine\CustomType\Competition\RaceNameType
             TimeType: DevAway\KartCompetition\Competition\Infrastructure\Repository\Persistence\Doctrine\CustomType\Competition\TimeType
+            PhotoType: DevAway\KartCompetition\Competition\Infrastructure\Repository\Persistence\Doctrine\CustomType\Competition\PhotoType
+            PilotNameType: DevAway\KartCompetition\Competition\Infrastructure\Repository\Persistence\Doctrine\CustomType\Competition\PilotNameType
+            TeamType: DevAway\KartCompetition\Competition\Infrastructure\Repository\Persistence\Doctrine\CustomType\Competition\TeamType
+            AgeType: DevAway\KartCompetition\Competition\Infrastructure\Repository\Persistence\Doctrine\CustomType\Competition\AgeType
 
     orm:
         auto_generate_proxy_classes: true

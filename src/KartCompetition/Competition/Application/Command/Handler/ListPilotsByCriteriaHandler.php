@@ -4,32 +4,27 @@ declare(strict_types=1);
 
 namespace DevAway\KartCompetition\Competition\Application\Command\Handler;
 
-use DevAway\KartCompetition\Competition\Application\Command\ListRacesByCriteria;
-use DevAway\KartCompetition\Competition\Domain\Entity\Race;
-use DevAway\KartCompetition\Competition\Domain\Exception\RaceNotFound;
-use DevAway\KartCompetition\Competition\Domain\Repository\RaceRepository;
+use DevAway\KartCompetition\Competition\Application\Command\ListPilotsByCriteria;
+use DevAway\KartCompetition\Competition\Domain\Exception\PilotNotFound;
+use DevAway\KartCompetition\Competition\Domain\Repository\PilotRepository;
 use DevAway\KartCompetition\Shared\Domain\Criteria\Criteria;
 use DevAway\KartCompetition\Shared\Domain\Criteria\Filters;
 use DevAway\KartCompetition\Shared\Domain\Criteria\Orders;
 
-class FindAllRaceHandler
+class ListPilotsByCriteriaHandler
 {
-    private RaceRepository $repository;
+    private PilotRepository $repository;
 
     /**
-     * FindAllRaceHandler constructor.
-     * @param RaceRepository $repository
+     * ListPilotsByCriteriaHandler constructor.
+     * @param PilotRepository $repository
      */
-    public function __construct(RaceRepository $repository)
+    public function __construct(PilotRepository $repository)
     {
         $this->repository = $repository;
     }
 
-    /**
-     * @param ListRacesByCriteria $command
-     * @return array
-     */
-    public function handle(ListRacesByCriteria $command): array
+    public function handle(ListPilotsByCriteria $command): array
     {
         $criteria = $this->getCriteria(
             $command->filters(),
@@ -38,13 +33,13 @@ class FindAllRaceHandler
             $command->limit(),
         );
 
-        $races = $this->repository->findBy($criteria);
+        $pilots = $this->repository->findBy($criteria);
 
-        if (empty($races)) {
-            throw new RaceNotFound("No Races found", 404);
+        if (empty($pilots)) {
+            throw new PilotNotFound("No Races found", 404);
         }
 
-        return $races;
+        return $pilots;
     }
 
     /**

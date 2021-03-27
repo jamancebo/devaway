@@ -74,4 +74,20 @@ class RaceRepositoryTest extends CompetitionModuleIntegrationTestCase
         $this->assertInstanceOf(Time::class, $race->bestTime());
         $this->assertInstanceOf(Time::class, $race->time());
     }
+
+    public function testListRaces()
+    {
+        $races = $this->repository()->list();
+
+        $this->assertIsArray($races);
+        foreach ($races as $race) {
+            $this->assertInstanceOf(Id::class, $race->id());
+            $this->assertInstanceOf(IdPilot::class, $race->idPilot());
+            $this->assertInstanceOf(Points::class, $race->points());
+            $this->assertInstanceOf(RaceName::class, $race->name());
+            $this->assertInstanceOf(Time::class, $race->bestTime());
+            $this->assertInstanceOf(Time::class, $race->time());
+        }
+    }
+
 }

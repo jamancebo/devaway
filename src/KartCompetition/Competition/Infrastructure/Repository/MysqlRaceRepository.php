@@ -50,6 +50,9 @@ class MysqlRaceRepository extends DoctrineRepository implements RaceRepository
         ]);
     }
 
+    /**
+     * @inheritDoc
+     */
     public function findBy(Criteria $criteria): array
     {
         return $this->repository(Race::class)->findBy(
@@ -58,5 +61,13 @@ class MysqlRaceRepository extends DoctrineRepository implements RaceRepository
             $criteria->limit(),
             $criteria->offset()
         );
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function list(): array
+    {
+        return $this->repository(Race::class)->findAll();
     }
 }

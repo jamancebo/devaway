@@ -36,4 +36,9 @@ interface RaceRepository
      * @return Race[]
      */
     public function findPilotRaces(IdPilot $idPilot): array;
+
+    /**
+     * @return array
+     */
+    public function list(): array;
 }

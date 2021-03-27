@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace DevAway\Tests\Integration\KartCompetition\Shared\Infrastructure\DataFixtures;
 
+use DevAway\KartCompetition\Competition\Domain\Repository\PilotRepository;
 use DevAway\KartCompetition\Competition\Domain\Repository\RaceRepository;
+use DevAway\Tests\Integration\KartCompetition\Competition\Infrastructure\DataFixtures\PilotFixture;
 use DevAway\Tests\Integration\KartCompetition\Competition\Infrastructure\DataFixtures\RaceFixture;
 use DevAway\Tests\Integration\KartCompetition\Shared\Domain\DataFixtures\FixtureLoader;
 use Doctrine\Common\DataFixtures\Executor\ORMExecutor;
@@ -15,24 +17,10 @@ use Doctrine\ORM\EntityManager;
 
 class MysqlFixtureLoader implements FixtureLoader
 {
-    /**
-     * @var EntityManager
-     */
     private EntityManager $entityManager;
-
-    /**
-     * @var Loader
-     */
     private Loader $loader;
-
-    /**
-     * @var RaceRepository
-     */
     private RaceRepository $raceRepository;
-
-    /**
-     * @var ORMPurger
-     */
+    private PilotRepository $pilotRepository;
     private ORMPurger $purger;
 
     /**
@@ -43,15 +31,19 @@ class MysqlFixtureLoader implements FixtureLoader
     /**
      * @param EntityManager $entityManager
      * @param RaceRepository $raceRepository
+     * @param PilotRepository $pilotRepository
      */
     public function __construct(
         EntityManager $entityManager,
-        RaceRepository $raceRepository
+        RaceRepository $raceRepository,
+        PilotRepository $pilotRepository
     ) {
         $this->entityManager = $entityManager;
         $this->raceRepository = $raceRepository;
+        $this->pilotRepository = $pilotRepository;
         $this->loader = new Loader();
-        $this->addCustomFixtures();
+        $this->loader->addFixture(new RaceFixture($this->raceRepository));
+        $this->loader->addFixture(new PilotFixture($this->pilotRepository));
         $this->purger = new ORMPurger();
         $this->executor = new ORMExecutor($this->entityManager, $this->purger);
     }

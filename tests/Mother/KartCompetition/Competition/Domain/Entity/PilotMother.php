@@ -9,11 +9,13 @@ use DevAway\KartCompetition\Competition\Domain\ValueObject\Age;
 use DevAway\KartCompetition\Competition\Domain\ValueObject\Id;
 use DevAway\KartCompetition\Competition\Domain\ValueObject\Photo;
 use DevAway\KartCompetition\Competition\Domain\ValueObject\PilotName;
+use DevAway\KartCompetition\Competition\Domain\ValueObject\Points;
 use DevAway\KartCompetition\Competition\Domain\ValueObject\Team;
 use DevAway\Tests\Mother\KartCompetition\Competition\Domain\ValueObject\AgeMother;
 use DevAway\Tests\Mother\KartCompetition\Competition\Domain\ValueObject\IdMother;
 use DevAway\Tests\Mother\KartCompetition\Competition\Domain\ValueObject\PhotoMother;
 use DevAway\Tests\Mother\KartCompetition\Competition\Domain\ValueObject\PilotNameMother;
+use DevAway\Tests\Mother\KartCompetition\Competition\Domain\ValueObject\PointsMother;
 use DevAway\Tests\Mother\KartCompetition\Competition\Domain\ValueObject\TeamMother;
 
 class PilotMother
@@ -24,6 +26,7 @@ class PilotMother
      * @param Team $team
      * @param PilotName $name
      * @param Age $age
+     * @param Points $points
      * @return Pilot
      */
     public static function create(
@@ -31,9 +34,10 @@ class PilotMother
         Photo $photo,
         Team $team,
         PilotName $name,
-        Age $age
+        Age $age,
+        Points $points
     ): Pilot {
-        return Pilot::instantiate($id, $photo, $team, $name, $age);
+        return Pilot::instantiate($id, $photo, $team, $name, $age, $points);
     }
 
     /**
@@ -46,7 +50,8 @@ class PilotMother
             PhotoMother::random(),
             TeamMother::random(),
             PilotNameMother::random(),
-            AgeMother::random()
+            AgeMother::random(),
+            PointsMother::random()
         );
     }
 }

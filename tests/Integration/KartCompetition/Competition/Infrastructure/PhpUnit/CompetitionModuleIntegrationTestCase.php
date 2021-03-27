@@ -4,13 +4,14 @@ declare(strict_types=1);
 
 namespace DevAway\Tests\Integration\KartCompetition\Competition\Infrastructure\PhpUnit;
 
+use DevAway\KartCompetition\Competition\Domain\Repository\PilotRepository;
 use DevAway\KartCompetition\Competition\Domain\Repository\RaceRepository;
 use DevAway\Tests\Integration\KartCompetition\Shared\Infrastructure\PhpUnit\IntegrationTestCase;
-use Doctrine\DBAL\Exception;
 
 class CompetitionModuleIntegrationTestCase extends IntegrationTestCase
 {
     private RaceRepository $raceRepository;
+    private PilotRepository $pilotRepository;
     /**
      * @return void
      */
@@ -36,6 +37,16 @@ class CompetitionModuleIntegrationTestCase extends IntegrationTestCase
     {
         if (empty($this->raceRepository)) {
             return $this->service(RaceRepository::class);
+        }
+    }
+
+    /**
+     * @return PilotRepository
+     */
+    public function pilotRepository(): PilotRepository
+    {
+        if (empty($this->pilotRepository)) {
+            return $this->service(PilotRepository::class);
         }
     }
 }

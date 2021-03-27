@@ -38,7 +38,6 @@ final class Orders extends Collection
     public static function fromStrings(array $orders): self
     {
         $items = [];
-
         foreach ($orders as $order) {
             $items[] = Order::fromString($order);
         }

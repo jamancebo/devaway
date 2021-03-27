@@ -11,3 +11,10 @@ post_race:
   methods: POST
   requirements:
     version: v1
+
+get_competicion_general_races:
+  path: /{version}/general
+  controller: DevAway\KartCompetition\Competition\Infrastructure\EntryPoint\Controller\GetGeneralCompetitionRaces
+  methods: GET
+  requirements:
+    version: v1

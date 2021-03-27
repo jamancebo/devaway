@@ -13,3 +13,7 @@ services:
   DevAway\KartCompetition\Competition\Application\Command\Handler\FindAllRaceHandler:
     tags:
       - { name: tactician.handler, command: DevAway\KartCompetition\Competition\Application\Command\ListRacesByCriteria, bus: default }
+
+  DevAway\KartCompetition\Competition\Application\Command\Handler\ListPilotsByCriteriaHandler:
+    tags:
+      - { name: tactician.handler, command: DevAway\KartCompetition\Competition\Application\Command\ListPilotsByCriteria, bus: default }

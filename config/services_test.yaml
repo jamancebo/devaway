@@ -11,3 +11,4 @@ services:
     arguments:
       - '@doctrine.orm.entity_manager'
       - '@DevAway\KartCompetition\Competition\Domain\Repository\RaceRepository'
+      - '@DevAway\KartCompetition\Competition\Domain\Repository\PilotRepository'
