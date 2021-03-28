@@ -6,7 +6,7 @@ namespace DevAway\Tests\Unit\KartCompetition\Competition\Domain\Entity;
 
 use DevAway\KartCompetition\Competition\Domain\Entity\Pilot;
 use DevAway\Tests\Mother\KartCompetition\Competition\Domain\ValueObject\AgeMother;
-use DevAway\Tests\Mother\KartCompetition\Competition\Domain\ValueObject\IdMother;
+use DevAway\Tests\Mother\KartCompetition\Competition\Domain\ValueObject\IdPilotMother;
 use DevAway\Tests\Mother\KartCompetition\Competition\Domain\ValueObject\PhotoMother;
 use DevAway\Tests\Mother\KartCompetition\Competition\Domain\ValueObject\PilotNameMother;
 use DevAway\Tests\Mother\KartCompetition\Competition\Domain\ValueObject\TeamMother;
@@ -16,7 +16,7 @@ class PilotTest extends CompetitionModuleUnitCase
 {
     public function testIniciate()
     {
-        $id = IdMother::random();
+        $id = IdPilotMother::random();
         $photo = PhotoMother::random();
         $team = TeamMother::random();
         $name = PilotNameMother::random();

@@ -6,11 +6,10 @@ namespace DevAway\Tests\Unit\KartCompetition\Competition\Application\Command\Han
 
 use DevAway\KartCompetition\Competition\Application\Command\Handler\CreateRaceHandler;
 use DevAway\KartCompetition\Competition\Application\Exception\RaceExists;
-use DevAway\KartCompetition\Shared\Domain\Criteria\Filters;
+use DevAway\KartCompetition\Competition\Domain\Exception\PilotNotFound;
 use DevAway\Tests\Mother\KartCompetition\Competition\Application\Command\CreateRaceMother;
 use DevAway\Tests\Mother\KartCompetition\Competition\Domain\Criteria\CriteriaMother;
 use DevAway\Tests\Mother\KartCompetition\Competition\Domain\Criteria\FiltersMother;
-use DevAway\Tests\Mother\KartCompetition\Competition\Domain\Entity\RaceMother;
 use DevAway\Tests\Unit\KartCompetition\Competition\Infrastructure\PhpUnit\CompetitionModuleUnitCase;
 
 class CreateRaceTest extends CompetitionModuleUnitCase
@@ -20,30 +19,30 @@ class CreateRaceTest extends CompetitionModuleUnitCase
     public function setUp(): void
     {
         parent::setUp();
-        $this->handler = new CreateRaceHandler($this->raceRepository());
+        $this->handler = new CreateRaceHandler($this->raceRepository(), $this->pilotRepository());
     }
 
     public function testCreateRace()
     {
         $command = CreateRaceMother::random();
 
-        $this->shouldNotFindRace();
+        $this->shouldFindPilot();
         $this->shouldCreateRace();
 
-        $createdRace = $this->handler->handle($command);
+        $createdRaces = $this->handler->handle($command);
 
-        $this->assertEquals($command->name(), $createdRace->name()->value());
-        $this->assertEquals($command->idPilot(), $createdRace->idPilot()->value());
-        $this->assertEquals($command->laps(), $createdRace->laps()->values());
+        foreach ($createdRaces as $key => $createRace) {
+            $this->assertEquals($command->idPilot(), $createRace->idPilot()->value());
+            $this->assertEquals($command->races()[$key]["name"], $createRace->name()->value());
+        }
     }
 
-    public function testCreateRaceExisting()
+    public function testCreateRaceAndPilotNotFound()
     {
         $command = CreateRaceMother::random();
-        $criteria = CriteriaMother::create(FiltersMother::random());
 
-        $this->expectException(RaceExists::class);
-        $this->shouldFindRace($criteria);
+        $this->expectException(PilotNotFound::class);
+        $this->shouldNotFindPilot();
 
         $this->handler->handle($command);
     }

@@ -6,7 +6,7 @@ namespace DevAway\KartCompetition\Shared\Domain\ValueObject;
 
 use DevAway\KartCompetition\Shared\Domain\Utils\Collection;
 
-abstract class TimeCollection extends Collection
+abstract class StringCollection extends Collection
 {
     /**
      * @return string[]

@@ -17,3 +17,7 @@ services:
   DevAway\KartCompetition\Competition\Application\Command\Handler\ListPilotsByCriteriaHandler:
     tags:
       - { name: tactician.handler, command: DevAway\KartCompetition\Competition\Application\Command\ListPilotsByCriteria, bus: default }
+
+  DevAway\KartCompetition\Competition\Application\Command\Handler\CreatePilotHandler:
+    tags:
+      - { name: tactician.handler, command: DevAway\KartCompetition\Competition\Application\Command\CreatePilot, bus: default }

@@ -6,7 +6,7 @@ namespace DevAway\Tests\Mother\KartCompetition\Competition\Application\Command;
 
 use DevAway\KartCompetition\Competition\Application\Command\CreatePilot;
 use DevAway\Tests\Mother\KartCompetition\Competition\Domain\ValueObject\AgeMother;
-use DevAway\Tests\Mother\KartCompetition\Competition\Domain\ValueObject\IdMother;
+use DevAway\Tests\Mother\KartCompetition\Competition\Domain\ValueObject\IdPilotMother;
 use DevAway\Tests\Mother\KartCompetition\Competition\Domain\ValueObject\PhotoMother;
 use DevAway\Tests\Mother\KartCompetition\Competition\Domain\ValueObject\PilotNameMother;
 use DevAway\Tests\Mother\KartCompetition\Competition\Domain\ValueObject\TeamMother;
@@ -44,7 +44,7 @@ class CreatePilotMother
     public static function random()
     {
         return self::create(
-            IdMother::random()->value(),
+            IdPilotMother::random()->value(),
             PhotoMother::random()->value(),
             TeamMother::random()->value(),
             PilotNameMother::random()->value(),

@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace DevAway\Tests\Mother\KartCompetition\Competition\Domain\ValueObject;
 
 use DevAway\KartCompetition\Competition\Domain\ValueObject\Laps;
-use DevAway\KartCompetition\Competition\Domain\ValueObject\Time;
+use DevAway\KartCompetition\Shared\Domain\ValueObject\StringValueObject;
 use Faker\Factory as FakerFactory;
 
 class LapsMother
@@ -17,7 +17,7 @@ class LapsMother
     public static function create(array $time): Laps
     {
         return new Laps(
-            array_map(fn ($time) => Time::fromString($time), $time)
+            array_map(fn ($time) => StringValueObject::fromString($time), $time)
         );
     }
 

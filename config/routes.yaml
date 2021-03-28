@@ -7,6 +7,14 @@ get_race:
 
 post_race:
   path: /{version}/race
+  controller: DevAway\KartCompetition\Competition\Infrastructure\EntryPoint\Controller\PostRace
+  methods: POST
+  requirements:
+    version: v1
+
+
+post_races:
+  path: /{version}/race
   controller: DevAway\KartCompetition\Competition\Infrastructure\EntryPoint\Controller\PostRaces
   methods: POST
   requirements:

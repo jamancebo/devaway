@@ -6,12 +6,12 @@ namespace DevAway\Tests\Mother\KartCompetition\Competition\Domain\Entity;
 
 use DevAway\KartCompetition\Competition\Domain\Entity\Pilot;
 use DevAway\KartCompetition\Competition\Domain\ValueObject\Age;
-use DevAway\KartCompetition\Competition\Domain\ValueObject\Id;
+use DevAway\KartCompetition\Competition\Domain\ValueObject\IdPilot;
 use DevAway\KartCompetition\Competition\Domain\ValueObject\Photo;
 use DevAway\KartCompetition\Competition\Domain\ValueObject\PilotName;
 use DevAway\KartCompetition\Competition\Domain\ValueObject\Team;
 use DevAway\Tests\Mother\KartCompetition\Competition\Domain\ValueObject\AgeMother;
-use DevAway\Tests\Mother\KartCompetition\Competition\Domain\ValueObject\IdMother;
+use DevAway\Tests\Mother\KartCompetition\Competition\Domain\ValueObject\IdPilotMother;
 use DevAway\Tests\Mother\KartCompetition\Competition\Domain\ValueObject\PhotoMother;
 use DevAway\Tests\Mother\KartCompetition\Competition\Domain\ValueObject\PilotNameMother;
 use DevAway\Tests\Mother\KartCompetition\Competition\Domain\ValueObject\TeamMother;
@@ -19,7 +19,7 @@ use DevAway\Tests\Mother\KartCompetition\Competition\Domain\ValueObject\TeamMoth
 class PilotMother
 {
     /**
-     * @param Id|null $id
+     * @param IdPilot $id
      * @param Photo $photo
      * @param Team $team
      * @param PilotName $name
@@ -27,7 +27,7 @@ class PilotMother
      * @return Pilot
      */
     public static function create(
-        ?Id $id,
+        IdPilot $id,
         Photo $photo,
         Team $team,
         PilotName $name,
@@ -42,7 +42,7 @@ class PilotMother
     public static function random(): Pilot
     {
         return self::create(
-            IdMother::random(),
+            IdPilotMother::random(),
             PhotoMother::random(),
             TeamMother::random(),
             PilotNameMother::random(),

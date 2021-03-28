@@ -41,38 +41,18 @@ class CompetitionModuleUnitCase extends UnitTestCase
     /**
      * @return void
      */
-    public function shouldNotFindRace(): void
+    public function shouldNotFindPilot(): void
     {
-        $this->raceRepository()
+        $this->pilotRepository()
             ->shouldReceive('findBy')
-            ->once();
+            ->once()
+            ->andReturn([]);
     }
 
     /**
      * @return void
      */
-    public function shouldNotFindPilot(): void
-    {
-        $this->pilotRepository()
-            ->shouldReceive('findBy')
-            ->once();
-    }
-
-    /**
-     * @param $criteria
-     */
-    public function shouldFindRace(Criteria $criteria): void
-    {
-        $this->raceRepository()
-            ->shouldReceive('findBy')
-            ->once()
-            ->andReturn(['race' => 'found']);
-    }
-
-    /**
-     * @param $criteria
-     */
-    public function shouldFindPilot(Criteria $criteria): void
+    public function shouldFindPilot(): void
     {
         $this->pilotRepository()
             ->shouldReceive('findBy')
@@ -86,8 +66,7 @@ class CompetitionModuleUnitCase extends UnitTestCase
     public function shouldCreateRace(): void
     {
         $this->raceRepository()
-            ->shouldReceive('create')
-            ->once();
+            ->shouldReceive('create');
     }
 
     /**

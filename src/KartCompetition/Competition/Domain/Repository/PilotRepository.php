@@ -6,7 +6,7 @@ namespace DevAway\KartCompetition\Competition\Domain\Repository;
 
 use DevAway\KartCompetition\Competition\Domain\Entity\Pilot;
 use DevAway\KartCompetition\Competition\Domain\Exception\PilotNotFound;
-use DevAway\KartCompetition\Competition\Domain\ValueObject\Id;
+use DevAway\KartCompetition\Competition\Domain\ValueObject\IdPilot;
 use DevAway\KartCompetition\Shared\Domain\Criteria\Criteria;
 
 interface PilotRepository
@@ -17,11 +17,11 @@ interface PilotRepository
     public function create(Pilot $pilot): void;
 
     /**
-     * @param Id $id
+     * @param IdPilot $id
      * @throws PilotNotFound
      * @return Pilot|null
      */
-    public function find(Id $id): ?Pilot;
+    public function find(IdPilot $id): ?Pilot;
 
     /**
      * @param Criteria $criteria

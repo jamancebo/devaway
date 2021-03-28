@@ -6,7 +6,7 @@ namespace DevAway\Tests\Integration\KartCompetition\Competition\Infrastructure\R
 
 use DevAway\KartCompetition\Competition\Domain\Entity\Pilot;
 use DevAway\KartCompetition\Competition\Domain\ValueObject\Age;
-use DevAway\KartCompetition\Competition\Domain\ValueObject\Id;
+use DevAway\KartCompetition\Competition\Domain\ValueObject\IdPilot;
 use DevAway\KartCompetition\Competition\Domain\ValueObject\Photo;
 use DevAway\KartCompetition\Competition\Domain\ValueObject\PilotName;
 use DevAway\Tests\Integration\KartCompetition\Competition\Infrastructure\DataFixtures\PilotFixture;
@@ -28,7 +28,7 @@ class PilotRepositoryTest extends CompetitionModuleIntegrationTestCase
         $this->assertIsObject($createdPilot);
         $this->assertInstanceOf(Pilot::class, $createdPilot);
 
-        $this->assertInstanceOf(Id::class, $createdPilot->id());
+        $this->assertInstanceOf(IdPilot::class, $createdPilot->id());
         $this->assertInstanceOf(Photo::class, $createdPilot->photo());
         $this->assertInstanceOf(PilotName::class, $createdPilot->name());
         $this->assertInstanceOf(Age::class, $createdPilot->age());
@@ -51,7 +51,7 @@ class PilotRepositoryTest extends CompetitionModuleIntegrationTestCase
         $pilots = $this->pilotRepository()->findBy($criteria);
 
         foreach ($pilots as $pilot) {
-            $this->assertInstanceOf(Id::class, $pilot->id());
+            $this->assertInstanceOf(IdPilot::class, $pilot->id());
             $this->assertInstanceOf(Photo::class, $pilot->photo());
             $this->assertInstanceOf(PilotName::class, $pilot->name());
             $this->assertInstanceOf(Age::class, $pilot->age());

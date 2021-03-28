@@ -40,10 +40,9 @@ class CreatePilotTest extends CompetitionModuleUnitCase
     public function testCreatePilotExisting()
     {
         $command = CreatePilotMother::random();
-        $criteria = CriteriaMother::create(FiltersMother::random());
 
         $this->expectException(PilotExists::class);
-        $this->shouldFindPilot($criteria);
+        $this->shouldFindPilot();
 
         $this->handler->handle($command);
     }

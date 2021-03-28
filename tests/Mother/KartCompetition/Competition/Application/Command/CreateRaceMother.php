@@ -6,35 +6,48 @@ namespace DevAway\Tests\Mother\KartCompetition\Competition\Application\Command;
 
 use DevAway\KartCompetition\Competition\Application\Command\CreateRace;
 use DevAway\Tests\Mother\KartCompetition\Competition\Domain\ValueObject\IdPilotMother;
-use DevAway\Tests\Mother\KartCompetition\Competition\Domain\ValueObject\LapsMother;
 use DevAway\Tests\Mother\KartCompetition\Competition\Domain\ValueObject\RaceNameMother;
+use DevAway\Tests\Mother\KartCompetition\Competition\Domain\ValueObject\TimeMother;
 
 class CreateRaceMother
 {
     /**
-     * @param string $name
      * @param string $idPilot
-     * @param array $laps
+     * @param array $race
      * @return CreateRace
      */
     public static function create(
-        string $name,
         string $idPilot,
-        array $laps
+        array $race
     ): CreateRace {
         return new CreateRace(
-            $name,
             $idPilot,
-            $laps
+            $race
         );
     }
 
     public static function random()
     {
         return self::create(
-            RaceNameMother::random()->value(),
             IdPilotMother::random()->value(),
-            LapsMother::random()->values()
+            self::race()
         );
+    }
+
+    public static function race(): array
+    {
+        return [
+            [
+                'name' => RaceNameMother::random()->value(),
+                'laps' => [
+                    [
+                        'time' => TimeMother::random()->value()
+                    ],
+                    [
+                        'time' => TimeMother::random()->value()
+                    ]
+                ]
+            ]
+        ];
     }
 }

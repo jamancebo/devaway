@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace DevAway\KartCompetition\Competition\Infrastructure\EntryPoint\Controller;
 
+use DevAway\KartCompetition\Competition\Application\Command\CreatePilot;
 use DevAway\KartCompetition\Competition\Application\Command\CreateRace;
+use DevAway\KartCompetition\Competition\Application\Command\ListPilotsByCriteria;
 use DevAway\KartCompetition\Competition\Application\DataTransformer\RacesToArray;
 use DevAway\KartCompetition\Shared\Infrastructure\EntryPoint\EntryPointToJsonResponse;
 use Exception;
@@ -13,7 +15,7 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-class PostRaces
+class PostRace
 {
     public function __invoke(
         Request $request,
@@ -31,19 +33,37 @@ class PostRaces
             );
         }
 
-        $command = new CreateRace(
-            $params['name'],
-            $params['idPilot'],
-            $params['laps']
+        $getPilot = new ListPilotsByCriteria(["id" => $params["_id"]]);
+        $pilot = $commandBus->handle($getPilot);
+
+        if (empty($pilot)) {
+            $createPilot = new CreatePilot(
+                $params["_id"],
+                $params["picture"],
+                $params["team"],
+                $params["name"],
+                $params["age"]
+            );
+
+            try {
+                $commandBus->handle($createPilot);
+            } catch (Exception $e) { // @codeCoverageIgnore
+                return $responseFormat->error($e->getMessage(), Response::HTTP_INTERNAL_SERVER_ERROR); // @codeCoverageIgnore
+            }
+        }
+
+        $commandRace = new CreateRace(
+            $params['_id'],
+            $params["races"]
         );
 
         try {
-            $race = $commandBus->handle($command);
+            $commandBus->handle($commandRace);
         } catch (Exception $e) { // @codeCoverageIgnore
             return $responseFormat->error($e->getMessage(), Response::HTTP_INTERNAL_SERVER_ERROR); // @codeCoverageIgnore
         }
 
-        return $responseFormat->response($dataTransformer->transform($race), Response::HTTP_CREATED);
+        return $responseFormat->response(["data" => "Created Races OK"], Response::HTTP_CREATED);
     }
 
     /**
@@ -57,9 +77,12 @@ class PostRaces
         }
 
         $requiredParams = [
-            'name' => fn ($name) => is_string($name),
-            'idPilot' => fn ($idPilot) => is_string($idPilot),
-            'laps' => fn ($laps) => is_array($laps)
+            '_id' => fn ($idPilot) => is_string($idPilot),
+            'picture' => fn ($photo) => is_string($photo),
+            'age' => fn ($age) => is_int($age),
+            'name' => fn ($namePilot) => is_string($namePilot),
+            'team' => fn ($team) => is_string($team),
+            'races' => fn ($races) => is_array($races)
         ];
 
         foreach ($requiredParams as $paramName => $isValidParam) {

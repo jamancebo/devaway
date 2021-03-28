@@ -6,7 +6,7 @@
         https://www.doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
 
     <entity name="DevAway\KartCompetition\Competition\Domain\Entity\Pilot" table="pilots">
-        <id name="id" type="IdType" >
+        <id name="id" type="IdPilotType" >
             <generator strategy="NONE" />
         </id>
         <field name="photo" type="PhotoType" />

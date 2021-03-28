@@ -8,7 +8,7 @@ use Codeception\Util\HttpCode;
 use DevAway\Tests\Functional\Shared\Infrastructure\Codeception\FunctionalCestCase;
 use FunctionalTester;
 
-class PostRacesCest extends FunctionalCestCase
+class PostRaceCest extends FunctionalCestCase
 {
     /**
      * @param FunctionalTester $I
@@ -41,9 +41,24 @@ class PostRacesCest extends FunctionalCestCase
     public function testPost(FunctionalTester $I)
     {
         $race = [
+            "_id" => "5fd7dbd8ce3a40582fb9ee6b",
+            "picture" => "http://placehold.it/64x64",
+            "age" => 23,
             'name' => 'Juan de Angel',
-            'idPilot' => '023b5652-c1c0-33ad-8cde-84f6aeae84e7',
-            'laps' => ['02:32','02:42','04:32','03:32']
+            "team" => "PROTODYNE",
+            'races' => [
+                [
+                    'name' => "RACE 0",
+                    'laps' => [
+                        [
+                            'time' => "14:03"
+                        ],
+                        [
+                            'time' => "14:03"
+                        ]
+                    ]
+                ]
+            ]
         ];
 
         $I->haveHttpHeader('Content-Type', 'application/json');
@@ -51,21 +66,5 @@ class PostRacesCest extends FunctionalCestCase
 
         $I->seeResponseCodeIs(HttpCode::CREATED);
         $I->seeResponseIsJson();
-
-        $I->seeResponseMatchesJsonType(
-            [
-                'status' => 'integer',
-                'data' => [
-                    'id' => 'string',
-                    'name' => 'string',
-                    'idPilot' => 'string',
-                    'laps' => 'array'
-                ]
-            ]
-        );
-
-        $I->seeResponseContainsJson(['data' => ['name' => $race['name']]]);
-        $I->seeResponseContainsJson(['data' => ['idPilot' => $race['idPilot']]]);
-        $I->seeResponseContainsJson(['data' => ['laps' => $race['laps']]]);
     }
 }

@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace DevAway\KartCompetition\Competition\Domain\Entity;
 
 use DevAway\KartCompetition\Competition\Domain\ValueObject\Age;
-use DevAway\KartCompetition\Competition\Domain\ValueObject\Id;
+use DevAway\KartCompetition\Competition\Domain\ValueObject\IdPilot;
 use DevAway\KartCompetition\Competition\Domain\ValueObject\Photo;
 use DevAway\KartCompetition\Competition\Domain\ValueObject\PilotName;
 use DevAway\KartCompetition\Competition\Domain\ValueObject\Team;
@@ -13,7 +13,7 @@ use DevAway\KartCompetition\Shared\Domain\Aggregate\AggregateRoot;
 
 class Pilot extends AggregateRoot
 {
-    private ?Id $id;
+    private IdPilot $id;
     private Photo $photo;
     private Team $team;
     private PilotName $name;
@@ -21,14 +21,14 @@ class Pilot extends AggregateRoot
 
     /**
      * Pilot constructor.
-     * @param Id|null $id
+     * @param IdPilot $id
      * @param Photo $photo
      * @param Team $team
      * @param PilotName $name
      * @param Age $age
      */
     public function __construct(
-        ?Id $id,
+        IdPilot $id,
         Photo $photo,
         Team $team,
         PilotName $name,
@@ -42,7 +42,7 @@ class Pilot extends AggregateRoot
     }
 
     /**
-     * @param Id|null $id
+     * @param IdPilot $id
      * @param Photo $photo
      * @param Team $team
      * @param PilotName $name
@@ -50,7 +50,7 @@ class Pilot extends AggregateRoot
      * @return Pilot
      */
     public static function instantiate(
-        ?Id $id,
+        IdPilot $id,
         Photo $photo,
         Team $team,
         PilotName $name,
@@ -60,9 +60,9 @@ class Pilot extends AggregateRoot
     }
 
     /**
-     * @return Id|null
+     * @return IdPilot
      */
-    public function id(): ?Id
+    public function id(): IdPilot
     {
         return $this->id;
     }

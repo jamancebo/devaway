@@ -9,7 +9,7 @@ use DevAway\KartCompetition\Competition\Application\Exception\PilotExists;
 use DevAway\KartCompetition\Competition\Domain\Entity\Pilot;
 use DevAway\KartCompetition\Competition\Domain\Repository\PilotRepository;
 use DevAway\KartCompetition\Competition\Domain\ValueObject\Age;
-use DevAway\KartCompetition\Competition\Domain\ValueObject\Id;
+use DevAway\KartCompetition\Competition\Domain\ValueObject\IdPilot;
 use DevAway\KartCompetition\Competition\Domain\ValueObject\Photo;
 use DevAway\KartCompetition\Competition\Domain\ValueObject\PilotName;
 use DevAway\KartCompetition\Competition\Domain\ValueObject\Team;
@@ -46,7 +46,7 @@ class CreatePilotHandler
         }
 
         $pilot = Pilot::instantiate(
-            Id::fromString($command->id()),
+            IdPilot::fromString($command->id()),
             Photo::fromString($command->photo()),
             Team::fromString($command->team()),
             PilotName::fromString($command->name()),

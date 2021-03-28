@@ -6,7 +6,7 @@ namespace DevAway\KartCompetition\Competition\Infrastructure\Repository;
 
 use DevAway\KartCompetition\Competition\Domain\Entity\Pilot;
 use DevAway\KartCompetition\Competition\Domain\Repository\PilotRepository;
-use DevAway\KartCompetition\Competition\Domain\ValueObject\Id;
+use DevAway\KartCompetition\Competition\Domain\ValueObject\IdPilot;
 use DevAway\KartCompetition\Shared\Domain\Criteria\Criteria;
 use DevAway\KartCompetition\Shared\Infrastructure\Repository\Doctrine\DoctrineRepository;
 use Doctrine\ORM\EntityManager;
@@ -32,7 +32,7 @@ class MysqlPilotRepository extends DoctrineRepository implements PilotRepository
     /**
      * @inheritDoc
      */
-    public function find(Id $id): ?Pilot
+    public function find(IdPilot $id): ?Pilot
     {
         $pilot = $this->entityManager->find(Pilot::class, $id->value());
         return $pilot;

@@ -4,16 +4,17 @@ declare(strict_types=1);
 
 namespace DevAway\KartCompetition\Competition\Domain\ValueObject;
 
-use DevAway\KartCompetition\Shared\Domain\ValueObject\TimeCollection;
+use DevAway\KartCompetition\Shared\Domain\ValueObject\StringCollection;
+use DevAway\KartCompetition\Shared\Domain\ValueObject\StringValueObject;
 
-class Laps extends TimeCollection
+class Laps extends StringCollection
 {
     /**
      * @inheritDoc
      */
     protected function type(): string
     {
-        return Time::class;
+        return StringValueObject::class;
     }
 
     /**
@@ -25,7 +26,7 @@ class Laps extends TimeCollection
         $values = [];
 
         foreach ($array as $string) {
-            $values[] = Time::fromString($string);
+            $values[] = StringValueObject::fromString($string);
         }
 
         return new self($values);

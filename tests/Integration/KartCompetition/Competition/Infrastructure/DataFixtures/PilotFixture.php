@@ -7,7 +7,7 @@ namespace DevAway\Tests\Integration\KartCompetition\Competition\Infrastructure\D
 use DevAway\KartCompetition\Competition\Domain\Repository\PilotRepository;
 use DevAway\Tests\Mother\KartCompetition\Competition\Domain\Entity\PilotMother;
 use DevAway\Tests\Mother\KartCompetition\Competition\Domain\ValueObject\AgeMother;
-use DevAway\Tests\Mother\KartCompetition\Competition\Domain\ValueObject\IdMother;
+use DevAway\Tests\Mother\KartCompetition\Competition\Domain\ValueObject\IdPilotMother;
 use DevAway\Tests\Mother\KartCompetition\Competition\Domain\ValueObject\PhotoMother;
 use DevAway\Tests\Mother\KartCompetition\Competition\Domain\ValueObject\PilotNameMother;
 use DevAway\Tests\Mother\KartCompetition\Competition\Domain\ValueObject\TeamMother;
@@ -35,7 +35,7 @@ class PilotFixture implements FixtureInterface
      */
     public function load(ObjectManager $manager)
     {
-        $id = IdMother::create(self::ID);
+        $id = IdPilotMother::create(self::ID);
         $photo = PhotoMother::create('photo');
         $team = TeamMother::create("Renault");
         $name = PilotNameMother::create('Fernando Alonso');
