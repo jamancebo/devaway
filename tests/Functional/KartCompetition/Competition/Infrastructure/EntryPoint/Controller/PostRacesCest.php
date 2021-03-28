@@ -41,11 +41,9 @@ class PostRacesCest extends FunctionalCestCase
     public function testPost(FunctionalTester $I)
     {
         $race = [
-            'time' => '10:01',
-            'points' => 10,
             'name' => 'Juan de Angel',
             'idPilot' => '023b5652-c1c0-33ad-8cde-84f6aeae84e7',
-            'bestTime' => '02:32'
+            'laps' => ['02:32','02:42','04:32','03:32']
         ];
 
         $I->haveHttpHeader('Content-Type', 'application/json');
@@ -59,19 +57,15 @@ class PostRacesCest extends FunctionalCestCase
                 'status' => 'integer',
                 'data' => [
                     'id' => 'string',
-                    'time' => 'string',
                     'name' => 'string',
-                    'points' => 'integer',
                     'idPilot' => 'string',
-                    'bestTime' => 'string'
+                    'laps' => 'array'
                 ]
             ]
         );
 
-        $I->seeResponseContainsJson(['data' => ['time' => $race['time']]]);
         $I->seeResponseContainsJson(['data' => ['name' => $race['name']]]);
-        $I->seeResponseContainsJson(['data' => ['points' => $race['points']]]);
         $I->seeResponseContainsJson(['data' => ['idPilot' => $race['idPilot']]]);
-        $I->seeResponseContainsJson(['data' => ['bestTime' => $race['bestTime']]]);
+        $I->seeResponseContainsJson(['data' => ['laps' => $race['laps']]]);
     }
 }

@@ -32,11 +32,9 @@ class PostRaces
         }
 
         $command = new CreateRace(
-            $params['time'],
-            $params['points'],
             $params['name'],
             $params['idPilot'],
-            $params['bestTime']
+            $params['laps']
         );
 
         try {
@@ -59,11 +57,9 @@ class PostRaces
         }
 
         $requiredParams = [
-            'time' => fn ($time) => is_string($time),
-            'points' => fn ($points) => is_int($points),
             'name' => fn ($name) => is_string($name),
             'idPilot' => fn ($idPilot) => is_string($idPilot),
-            'bestTime' => fn ($bestTime) => is_string($bestTime)
+            'laps' => fn ($laps) => is_array($laps)
         ];
 
         foreach ($requiredParams as $paramName => $isValidParam) {

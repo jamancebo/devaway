@@ -64,11 +64,9 @@ class GetRaceCest extends FunctionalCestCase
                 'data' => [
                     0 => [
                         'id' => 'string',
-                        'time' => 'string',
                         'name' => 'string',
-                        'points' => 'integer',
                         'idPilot' => 'string',
-                        'bestTime' => 'string'
+                        'laps' => 'array'
                     ]
                 ]
             ]

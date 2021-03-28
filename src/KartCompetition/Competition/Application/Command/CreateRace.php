@@ -6,48 +6,24 @@ namespace DevAway\KartCompetition\Competition\Application\Command;
 
 class CreateRace
 {
-    private string $time;
-    private int $points;
     private string $name;
     private string $idPilot;
-    private string $bestTime;
+    private array $laps;
 
     /**
      * CreateRace constructor.
-     * @param string $time
-     * @param int $points
      * @param string $name
      * @param string $idPilot
-     * @param string $bestTime
+     * @param array $laps
      */
     public function __construct(
-        string $time,
-        int $points,
         string $name,
         string $idPilot,
-        string $bestTime
+        array $laps
     ) {
-        $this->time = $time;
-        $this->points = $points;
         $this->name = $name;
         $this->idPilot = $idPilot;
-        $this->bestTime = $bestTime;
-    }
-
-    /**
-     * @return string
-     */
-    public function time(): string
-    {
-        return $this->time;
-    }
-
-    /**
-     * @return int
-     */
-    public function points(): int
-    {
-        return $this->points;
+        $this->laps = $laps;
     }
 
     /**
@@ -67,10 +43,10 @@ class CreateRace
     }
 
     /**
-     * @return string
+     * @return array
      */
-    public function bestTime(): string
+    public function laps(): array
     {
-        return $this->bestTime;
+        return $this->laps;
     }
 }

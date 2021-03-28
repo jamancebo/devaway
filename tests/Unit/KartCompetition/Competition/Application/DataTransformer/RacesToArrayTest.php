@@ -27,10 +27,8 @@ class RacesToArrayTest extends CompetitionModuleUnitCase
 
         $this->assertEquals($race->id()->value(), $array['id']);
         $this->assertEquals($race->idPilot()->value(), $array['idPilot']);
-        $this->assertEquals($race->points()->value(), $array['points']);
         $this->assertEquals($race->name()->value(), $array['name']);
-        $this->assertEquals($race->time()->value(), $array['time']);
-        $this->assertEquals($race->bestTime()->value(), $array['bestTime']);
+        $this->assertEquals($race->laps()->values(), $array['laps']);
 
         return [
             'array' => $array,

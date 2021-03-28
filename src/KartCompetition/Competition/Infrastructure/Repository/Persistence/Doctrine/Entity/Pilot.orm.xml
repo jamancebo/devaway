@@ -13,7 +13,6 @@
         <field name="team" type="TeamType" />
         <field name="name" type="PilotNameType" />
         <field name="age" type="AgeType" />
-        <field name="points" type="PointsType" />
     </entity>
 
 </doctrine-mapping>

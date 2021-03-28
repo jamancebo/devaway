@@ -10,7 +10,6 @@ use DevAway\Tests\Mother\KartCompetition\Competition\Domain\ValueObject\AgeMothe
 use DevAway\Tests\Mother\KartCompetition\Competition\Domain\ValueObject\IdMother;
 use DevAway\Tests\Mother\KartCompetition\Competition\Domain\ValueObject\PhotoMother;
 use DevAway\Tests\Mother\KartCompetition\Competition\Domain\ValueObject\PilotNameMother;
-use DevAway\Tests\Mother\KartCompetition\Competition\Domain\ValueObject\PointsMother;
 use DevAway\Tests\Mother\KartCompetition\Competition\Domain\ValueObject\TeamMother;
 use Doctrine\Common\DataFixtures\FixtureInterface;
 use Doctrine\Persistence\ObjectManager;
@@ -41,15 +40,13 @@ class PilotFixture implements FixtureInterface
         $team = TeamMother::create("Renault");
         $name = PilotNameMother::create('Fernando Alonso');
         $age = AgeMother::create(22);
-        $points = PointsMother::create(50);
 
         $race = PilotMother::create(
             $id,
             $photo,
             $team,
             $name,
-            $age,
-            $points
+            $age
         );
 
         $this->repository->create($race);

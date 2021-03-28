@@ -26,8 +26,7 @@ class GetGeneralCompetitionRaces
         EntryPointToJsonResponse $responseFormat,
         RacesToArray $dataTransformer
     ): JsonResponse {
-        $orders = ["points" => 'DESC'];
-        $command = new ListPilotsByCriteria([], $orders);
+        $command = new ListPilotsByCriteria([]);
 
         try {
             $races = $commandBus->handle($command);

@@ -8,9 +8,8 @@ use DevAway\KartCompetition\Competition\Domain\Repository\RaceRepository;
 use DevAway\Tests\Mother\KartCompetition\Competition\Domain\Entity\RaceMother;
 use DevAway\Tests\Mother\KartCompetition\Competition\Domain\ValueObject\IdMother;
 use DevAway\Tests\Mother\KartCompetition\Competition\Domain\ValueObject\IdPilotMother;
-use DevAway\Tests\Mother\KartCompetition\Competition\Domain\ValueObject\PointsMother;
+use DevAway\Tests\Mother\KartCompetition\Competition\Domain\ValueObject\LapsMother;
 use DevAway\Tests\Mother\KartCompetition\Competition\Domain\ValueObject\RaceNameMother;
-use DevAway\Tests\Mother\KartCompetition\Competition\Domain\ValueObject\TimeMother;
 use Doctrine\Common\DataFixtures\FixtureInterface;
 use Doctrine\Persistence\ObjectManager;
 
@@ -37,19 +36,15 @@ class RaceFixture implements FixtureInterface
     public function load(ObjectManager $manager)
     {
         $id = IdMother::create(self::ID);
-        $time = TimeMother::create('23:22');
-        $points = PointsMother::create(10);
         $name = RaceNameMother::create('Le mans');
-        $idPilot = IdPilotMother::create("");
-        $bestTime = TimeMother::create(self::IDPILOT);
+        $idPilot = IdPilotMother::create(self::IDPILOT);
+        $laps = LapsMother::random(5);
 
         $race = RaceMother::create(
             $id,
-            $time,
-            $points,
             $name,
             $idPilot,
-            $bestTime
+            $laps
         );
 
         $this->repository->create($race);

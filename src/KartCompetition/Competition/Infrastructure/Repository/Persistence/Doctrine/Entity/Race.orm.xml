@@ -10,10 +10,8 @@
             <generator strategy="NONE" />
         </id>
         <field name="idPilot" type="IdPilotType" />
-        <field name="points" type="PointsType" />
         <field name="name" type="RaceNameType" />
-        <field name="time" type="TimeType" />
-        <field name="bestTime" type="TimeType" />
+        <field name="laps" type="LapsType" />
     </entity>
 
 </doctrine-mapping>

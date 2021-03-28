@@ -9,7 +9,6 @@ use DevAway\KartCompetition\Competition\Domain\ValueObject\Age;
 use DevAway\KartCompetition\Competition\Domain\ValueObject\Id;
 use DevAway\KartCompetition\Competition\Domain\ValueObject\Photo;
 use DevAway\KartCompetition\Competition\Domain\ValueObject\PilotName;
-use DevAway\KartCompetition\Competition\Domain\ValueObject\Points;
 use DevAway\Tests\Integration\KartCompetition\Competition\Infrastructure\DataFixtures\PilotFixture;
 use DevAway\Tests\Integration\KartCompetition\Competition\Infrastructure\PhpUnit\CompetitionModuleIntegrationTestCase;
 use DevAway\Tests\Mother\KartCompetition\Competition\Domain\Criteria\CriteriaMother;
@@ -31,7 +30,6 @@ class PilotRepositoryTest extends CompetitionModuleIntegrationTestCase
 
         $this->assertInstanceOf(Id::class, $createdPilot->id());
         $this->assertInstanceOf(Photo::class, $createdPilot->photo());
-        $this->assertInstanceOf(Points::class, $createdPilot->points());
         $this->assertInstanceOf(PilotName::class, $createdPilot->name());
         $this->assertInstanceOf(Age::class, $createdPilot->age());
 
@@ -40,7 +38,6 @@ class PilotRepositoryTest extends CompetitionModuleIntegrationTestCase
         $this->assertEquals($createdPilot->team(), $pilot->team());
         $this->assertEquals($createdPilot->name(), $pilot->name());
         $this->assertEquals($createdPilot->age(), $pilot->age());
-        $this->assertEquals($createdPilot->points(), $pilot->points());
     }
 
     public function testFindBy()
@@ -56,7 +53,6 @@ class PilotRepositoryTest extends CompetitionModuleIntegrationTestCase
         foreach ($pilots as $pilot) {
             $this->assertInstanceOf(Id::class, $pilot->id());
             $this->assertInstanceOf(Photo::class, $pilot->photo());
-            $this->assertInstanceOf(Points::class, $pilot->points());
             $this->assertInstanceOf(PilotName::class, $pilot->name());
             $this->assertInstanceOf(Age::class, $pilot->age());
         }

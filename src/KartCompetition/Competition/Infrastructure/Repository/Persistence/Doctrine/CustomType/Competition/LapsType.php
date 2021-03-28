@@ -4,16 +4,16 @@ declare(strict_types=1);
 
 namespace DevAway\KartCompetition\Competition\Infrastructure\Repository\Persistence\Doctrine\CustomType\Competition;
 
-use DevAway\KartCompetition\Competition\Domain\ValueObject\Points;
-use DevAway\KartCompetition\Shared\Infrastructure\Repository\Doctrine\CustomType\IntegerCustomType;
+use DevAway\KartCompetition\Competition\Domain\ValueObject\Laps;
+use DevAway\KartCompetition\Shared\Infrastructure\Repository\Doctrine\CustomType\ArrayCustomType;
 
-class PointsType extends IntegerCustomType
+class LapsType extends ArrayCustomType
 {
     /**
      * @inheritDoc
      */
     protected function typeClassName(): string
     {
-        return Points::class;
+        return Laps::class;
     }
 }

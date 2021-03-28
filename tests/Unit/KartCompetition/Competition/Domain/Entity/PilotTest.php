@@ -9,7 +9,6 @@ use DevAway\Tests\Mother\KartCompetition\Competition\Domain\ValueObject\AgeMothe
 use DevAway\Tests\Mother\KartCompetition\Competition\Domain\ValueObject\IdMother;
 use DevAway\Tests\Mother\KartCompetition\Competition\Domain\ValueObject\PhotoMother;
 use DevAway\Tests\Mother\KartCompetition\Competition\Domain\ValueObject\PilotNameMother;
-use DevAway\Tests\Mother\KartCompetition\Competition\Domain\ValueObject\PointsMother;
 use DevAway\Tests\Mother\KartCompetition\Competition\Domain\ValueObject\TeamMother;
 use DevAway\Tests\Unit\KartCompetition\Competition\Infrastructure\PhpUnit\CompetitionModuleUnitCase;
 
@@ -22,15 +21,13 @@ class PilotTest extends CompetitionModuleUnitCase
         $team = TeamMother::random();
         $name = PilotNameMother::random();
         $age = AgeMother::random();
-        $points = PointsMother::random();
 
         $pilot = Pilot::instantiate(
             $id,
             $photo,
             $team,
             $name,
-            $age,
-            $points
+            $age
         );
         $this->assertInstanceOf(Pilot::class, $pilot);
         $this->assertEquals($id, $pilot->id());
@@ -38,6 +35,5 @@ class PilotTest extends CompetitionModuleUnitCase
         $this->assertEquals($team, $pilot->team());
         $this->assertEquals($name, $pilot->name());
         $this->assertEquals($age, $pilot->age());
-        $this->assertEquals($points, $pilot->points());
     }
 }
