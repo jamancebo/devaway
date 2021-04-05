@@ -15,7 +15,14 @@ doctrine:
             TeamType: DevAway\KartCompetition\Competition\Infrastructure\Repository\Persistence\Doctrine\CustomType\Competition\TeamType
             AgeType: DevAway\KartCompetition\Competition\Infrastructure\Repository\Persistence\Doctrine\CustomType\Competition\AgeType
             LapsType: DevAway\KartCompetition\Competition\Infrastructure\Repository\Persistence\Doctrine\CustomType\Competition\LapsType
+            TimeType: DevAway\KartCompetition\Competition\Infrastructure\Repository\Persistence\Doctrine\CustomType\Competition\TimeType
+            PointsType: DevAway\KartCompetition\Competition\Infrastructure\Repository\Persistence\Doctrine\CustomType\Competition\PointsType
     orm:
+        dql:
+            datetime_functions:
+                dateadd: DoctrineExtensions\Query\Mysql\DateAdd
+                datediff: DoctrineExtensions\Query\Mysql\DateDiff
+
         auto_generate_proxy_classes: true
         naming_strategy: doctrine.orm.naming_strategy.underscore_number_aware
         auto_mapping: true

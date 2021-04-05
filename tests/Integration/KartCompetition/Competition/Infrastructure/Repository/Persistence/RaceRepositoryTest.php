@@ -8,7 +8,9 @@ use DevAway\KartCompetition\Competition\Domain\Entity\Race;
 use DevAway\KartCompetition\Competition\Domain\ValueObject\Id;
 use DevAway\KartCompetition\Competition\Domain\ValueObject\IdPilot;
 use DevAway\KartCompetition\Competition\Domain\ValueObject\Laps;
+use DevAway\KartCompetition\Competition\Domain\ValueObject\Points;
 use DevAway\KartCompetition\Competition\Domain\ValueObject\RaceName;
+use DevAway\KartCompetition\Competition\Domain\ValueObject\Time;
 use DevAway\Tests\Integration\KartCompetition\Competition\Infrastructure\DataFixtures\RaceFixture;
 use DevAway\Tests\Integration\KartCompetition\Competition\Infrastructure\PhpUnit\CompetitionModuleIntegrationTestCase;
 use DevAway\Tests\Mother\KartCompetition\Competition\Domain\Criteria\CriteriaMother;
@@ -37,6 +39,9 @@ class RaceRepositoryTest extends CompetitionModuleIntegrationTestCase
         $this->assertEquals($race->idPilot()->value(), $createdRace->idPilot()->value());
         $this->assertEquals($race->name()->value(), $createdRace->name()->value());
         $this->assertEquals($race->laps()->values(), $createdRace->laps()->values());
+        $this->assertEquals($race->bestTime()->value(), $createdRace->bestTime()->value());
+        $this->assertEquals($race->totalTime()->value(), $createdRace->totalTime()->value());
+        $this->assertEquals($race->points()->value(), $createdRace->points()->value());
     }
 
     public function testFindByRaces()
@@ -54,6 +59,9 @@ class RaceRepositoryTest extends CompetitionModuleIntegrationTestCase
             $this->assertInstanceOf(IdPilot::class, $race->idPilot());
             $this->assertInstanceOf(RaceName::class, $race->name());
             $this->assertInstanceOf(Laps::class, $race->laps());
+            $this->assertInstanceOf(Time::class, $race->bestTime());
+            $this->assertInstanceOf(Time::class, $race->totalTime());
+            $this->assertInstanceOf(Points::class, $race->points());
         }
     }
 
@@ -65,6 +73,9 @@ class RaceRepositoryTest extends CompetitionModuleIntegrationTestCase
         $this->assertInstanceOf(IdPilot::class, $race->idPilot());
         $this->assertInstanceOf(RaceName::class, $race->name());
         $this->assertInstanceOf(Laps::class, $race->laps());
+        $this->assertInstanceOf(Time::class, $race->bestTime());
+        $this->assertInstanceOf(Time::class, $race->totalTime());
+        $this->assertInstanceOf(Points::class, $race->points());
     }
 
     public function testListRaces()
@@ -77,6 +88,9 @@ class RaceRepositoryTest extends CompetitionModuleIntegrationTestCase
             $this->assertInstanceOf(IdPilot::class, $race->idPilot());
             $this->assertInstanceOf(RaceName::class, $race->name());
             $this->assertInstanceOf(Laps::class, $race->laps());
+            $this->assertInstanceOf(Time::class, $race->bestTime());
+            $this->assertInstanceOf(Time::class, $race->totalTime());
+            $this->assertInstanceOf(Points::class, $race->points());
         }
     }
 

@@ -1,4 +1,7 @@
 {
+    "beberlei/doctrineextensions": {
+        "version": "v1.3.0"
+    },
     "behat/gherkin": {
         "version": "v4.8.0"
     },
@@ -85,6 +88,9 @@
     },
     "doctrine/dbal": {
         "version": "2.12.1"
+    },
+    "doctrine/deprecations": {
+        "version": "v0.5.3"
     },
     "doctrine/doctrine-bundle": {
         "version": "2.0",
@@ -209,6 +215,9 @@
     },
     "nikic/php-parser": {
         "version": "v4.10.4"
+    },
+    "oro/doctrine-extensions": {
+        "version": "2.0.0"
     },
     "phar-io/manifest": {
         "version": "2.0.1"

@@ -8,5 +8,5 @@ use DevAway\KartCompetition\Shared\Domain\ValueObject\StringValueObject;
 
 class Time extends StringValueObject
 {
-    //TODO. IMPLEMENTAR UNA VALIDACION PARA EL TIME
+    public const INITIAL = "00:00:00.0000";
 }

@@ -7,7 +7,6 @@ namespace DevAway\KartCompetition\Competition\Infrastructure\Repository;
 use DevAway\KartCompetition\Competition\Domain\Entity\Race;
 use DevAway\KartCompetition\Competition\Domain\Repository\RaceRepository;
 use DevAway\KartCompetition\Competition\Domain\ValueObject\Id;
-use DevAway\KartCompetition\Competition\Domain\ValueObject\IdPilot;
 use DevAway\KartCompetition\Shared\Domain\Criteria\Criteria;
 use DevAway\KartCompetition\Shared\Infrastructure\Repository\Doctrine\DoctrineRepository;
 use Doctrine\ORM\EntityManager;
@@ -42,17 +41,6 @@ class MysqlRaceRepository extends DoctrineRepository implements RaceRepository
     /**
      * @inheritDoc
      */
-    public function findPilotRaces(IdPilot $idPilot): array
-    {
-        /** @var Race[] $linkedCompanies */
-        return $this->repository(Race::class)->findBy([
-            'idPilot' => $idPilot->value()
-        ]);
-    }
-
-    /**
-     * @inheritDoc
-     */
     public function findBy(Criteria $criteria): array
     {
         return $this->repository(Race::class)->findBy(
@@ -69,5 +57,14 @@ class MysqlRaceRepository extends DoctrineRepository implements RaceRepository
     public function list(): array
     {
         return $this->repository(Race::class)->findAll();
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function update(Race $race): Race
+    {
+        $this->persist($race);
+        return $race;
     }
 }

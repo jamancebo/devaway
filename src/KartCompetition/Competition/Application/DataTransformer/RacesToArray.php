@@ -8,7 +8,9 @@ use DevAway\KartCompetition\Competition\Domain\Entity\Race;
 use DevAway\KartCompetition\Competition\Domain\ValueObject\Id;
 use DevAway\KartCompetition\Competition\Domain\ValueObject\IdPilot;
 use DevAway\KartCompetition\Competition\Domain\ValueObject\Laps;
+use DevAway\KartCompetition\Competition\Domain\ValueObject\Points;
 use DevAway\KartCompetition\Competition\Domain\ValueObject\RaceName;
+use DevAway\KartCompetition\Competition\Domain\ValueObject\Time;
 
 class RacesToArray
 {
@@ -22,7 +24,10 @@ class RacesToArray
             'id' => $race->id()->value(),
             'name' => $race->name()->value(),
             'idPilot' => $race->idPilot()->value(),
-            'laps' => $race->laps()->values()
+            'laps' => $race->laps()->values(),
+            'bestTime' => $race->bestTime()->value(),
+            'totalTime' => $race->totalTime()->value(),
+            'points' => $race->points()->value()
         ];
     }
 
@@ -36,7 +41,10 @@ class RacesToArray
             Id::fromString($data['id']),
             RaceName::fromString($data['name']),
             IdPilot::fromString($data['idPilot']),
-            Laps::fromValues($data['laps'])
+            Laps::fromValues($data['laps']),
+            Time::fromString($data['bestTime']),
+            Time::fromString($data['totalTime']),
+            Points::fromInt($data['points'])
         );
     }
 }

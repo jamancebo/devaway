@@ -5,11 +5,9 @@ declare(strict_types=1);
 namespace DevAway\Tests\Unit\KartCompetition\Competition\Application\Command\Handler;
 
 use DevAway\KartCompetition\Competition\Application\Command\Handler\CreateRaceHandler;
-use DevAway\KartCompetition\Competition\Application\Exception\RaceExists;
 use DevAway\KartCompetition\Competition\Domain\Exception\PilotNotFound;
 use DevAway\Tests\Mother\KartCompetition\Competition\Application\Command\CreateRaceMother;
-use DevAway\Tests\Mother\KartCompetition\Competition\Domain\Criteria\CriteriaMother;
-use DevAway\Tests\Mother\KartCompetition\Competition\Domain\Criteria\FiltersMother;
+use DevAway\Tests\Mother\KartCompetition\Competition\Domain\Entity\RaceMother;
 use DevAway\Tests\Unit\KartCompetition\Competition\Infrastructure\PhpUnit\CompetitionModuleUnitCase;
 
 class CreateRaceTest extends CompetitionModuleUnitCase
@@ -28,6 +26,7 @@ class CreateRaceTest extends CompetitionModuleUnitCase
 
         $this->shouldFindPilot();
         $this->shouldCreateRace();
+        $this->shouldFindListRaces(RaceMother::randomArray(2));
 
         $createdRaces = $this->handler->handle($command);
 

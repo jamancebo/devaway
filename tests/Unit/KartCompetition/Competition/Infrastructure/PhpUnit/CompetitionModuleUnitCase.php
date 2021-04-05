@@ -4,10 +4,8 @@ declare(strict_types=1);
 
 namespace DevAway\Tests\Unit\KartCompetition\Competition\Infrastructure\PhpUnit;
 
-use DevAway\KartCompetition\Competition\Domain\Entity\Race;
 use DevAway\KartCompetition\Competition\Domain\Repository\PilotRepository;
 use DevAway\KartCompetition\Competition\Domain\Repository\RaceRepository;
-use DevAway\KartCompetition\Shared\Domain\Criteria\Criteria;
 use DevAway\Tests\Unit\KartCompetition\Shared\Infrastructure\PhpUnit\UnitTestCase;
 use Mockery\MockInterface;
 

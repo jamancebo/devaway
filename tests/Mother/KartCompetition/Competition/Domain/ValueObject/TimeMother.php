@@ -5,10 +5,10 @@ declare(strict_types=1);
 namespace DevAway\Tests\Mother\KartCompetition\Competition\Domain\ValueObject;
 
 use DevAway\KartCompetition\Competition\Domain\ValueObject\Time;
-use Faker\Factory;
 
 class TimeMother
 {
+    public const BESTTIME = '00:00:40.333';
     /**
      * @param string $name
      * @return Time
@@ -23,7 +23,14 @@ class TimeMother
      */
     public static function random(): Time
     {
-        $faker = Factory::create('es_ES');
-        return self::create($faker->time('i:s'));
+        return self::create('00:08:40.333');
+    }
+
+    /**
+     * @return Time
+     */
+    public static function bestTimeRandom(): Time
+    {
+        return self::create(self::BESTTIME);
     }
 }

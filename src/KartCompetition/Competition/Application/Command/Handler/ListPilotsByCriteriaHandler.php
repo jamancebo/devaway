@@ -33,7 +33,13 @@ class ListPilotsByCriteriaHandler
             $command->limit(),
         );
 
-        return $this->repository->findBy($criteria);
+        $pilots = $this->repository->findBy($criteria);
+
+        if (empty($pilots)) {
+            throw new PilotNotFound("No Pilot found", 404);
+        }
+
+        return $pilots;
     }
 
     /**

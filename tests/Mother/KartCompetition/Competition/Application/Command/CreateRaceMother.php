@@ -41,10 +41,10 @@ class CreateRaceMother
                 'name' => RaceNameMother::random()->value(),
                 'laps' => [
                     [
-                        'time' => TimeMother::random()->value()
+                        'time' => '00:15:56.744'
                     ],
                     [
-                        'time' => TimeMother::random()->value()
+                        'time' => '00:11:56.744'
                     ]
                 ]
             ]

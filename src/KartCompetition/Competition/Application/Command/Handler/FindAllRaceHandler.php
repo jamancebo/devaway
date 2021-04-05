@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace DevAway\KartCompetition\Competition\Application\Command\Handler;
 
 use DevAway\KartCompetition\Competition\Application\Command\ListRacesByCriteria;
-use DevAway\KartCompetition\Competition\Domain\Entity\Race;
 use DevAway\KartCompetition\Competition\Domain\Exception\RaceNotFound;
 use DevAway\KartCompetition\Competition\Domain\Repository\RaceRepository;
 use DevAway\KartCompetition\Shared\Domain\Criteria\Criteria;

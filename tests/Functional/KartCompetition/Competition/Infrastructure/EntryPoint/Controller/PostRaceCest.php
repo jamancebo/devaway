@@ -51,10 +51,10 @@ class PostRaceCest extends FunctionalCestCase
                     'name' => "RACE 0",
                     'laps' => [
                         [
-                            'time' => "14:03"
+                            'time' => "00:08:06.484"
                         ],
                         [
-                            'time' => "14:03"
+                            'time' => "00:07:06.484"
                         ]
                     ]
                 ]

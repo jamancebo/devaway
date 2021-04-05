@@ -32,7 +32,28 @@ class LapsMother
         $laps = [];
         $numberOflaps = $numberOflaps ?? $faker->numberBetween(1, 10);
         for ($i = 0; $i < $numberOflaps; $i++) {
-            $laps[] = $faker->time('i:s');
+            $laps[] = $faker->time('H:i:s.u');
+        }
+
+        return self::create($laps);
+    }
+
+    /**
+     * @param int|null $numberOflaps
+     * @return Laps
+     */
+    public static function randomWithBestTime(?int $numberOflaps = null): Laps
+    {
+        $faker = FakerFactory::create('es_ES');
+
+        $laps = [];
+        $numberOflaps = $numberOflaps ?? $faker->numberBetween(1, 10);
+        for ($i = 0; $i < $numberOflaps; $i++) {
+            if ($i == 1) {
+                $laps[] = TimeMother::BESTTIME;
+            } else {
+                $laps[] = $faker->time('H:i:s.u');
+            }
         }
 
         return self::create($laps);

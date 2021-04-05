@@ -7,7 +7,6 @@ namespace DevAway\KartCompetition\Competition\Domain\Repository;
 use DevAway\KartCompetition\Competition\Domain\Entity\Race;
 use DevAway\KartCompetition\Competition\Domain\Exception\RaceNotFound;
 use DevAway\KartCompetition\Competition\Domain\ValueObject\Id;
-use DevAway\KartCompetition\Competition\Domain\ValueObject\IdPilot;
 use DevAway\KartCompetition\Shared\Domain\Criteria\Criteria;
 
 interface RaceRepository
@@ -31,14 +30,13 @@ interface RaceRepository
     public function findBy(Criteria $criteria): array;
 
     /**
-     * @param IdPilot $idPilot
-     * @throws RaceNotFound
-     * @return Race[]
-     */
-    public function findPilotRaces(IdPilot $idPilot): array;
-
-    /**
      * @return array
      */
     public function list(): array;
+
+    /**
+     * @param Race $race
+     * @return Race
+     */
+    public function update(Race $race): Race;
 }

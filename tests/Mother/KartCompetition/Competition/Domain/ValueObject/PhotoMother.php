@@ -24,6 +24,6 @@ class PhotoMother
     public static function random(): Photo
     {
         $faker = Factory::create('es_ES');
-        return self::create($faker->image());
+        return self::create($faker->imageUrl());
     }
 }

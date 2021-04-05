@@ -6,12 +6,18 @@
         https://www.doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
 
     <entity name="DevAway\KartCompetition\Competition\Domain\Entity\Race" table="races">
+
         <id name="id" type="IdType" >
             <generator strategy="NONE" />
         </id>
-        <field name="idPilot" type="IdPilotType" />
+        <id name="idPilot" type="IdPilotType" >
+            <generator strategy="NONE" />
+        </id>
         <field name="name" type="RaceNameType" />
         <field name="laps" type="LapsType" />
+        <field name="bestTime" type="TimeType" />
+        <field name="totalTime" type="TimeType" />
+        <field name="points" type="PointsType" />
     </entity>
 
 </doctrine-mapping>

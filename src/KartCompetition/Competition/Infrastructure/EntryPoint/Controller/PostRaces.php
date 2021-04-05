@@ -6,8 +6,10 @@ namespace DevAway\KartCompetition\Competition\Infrastructure\EntryPoint\Controll
 
 use DevAway\KartCompetition\Competition\Application\Command\CreatePilot;
 use DevAway\KartCompetition\Competition\Application\Command\CreateRace;
+use DevAway\KartCompetition\Competition\Application\Command\FindPilot;
 use DevAway\KartCompetition\Competition\Application\Command\ListPilotsByCriteria;
 use DevAway\KartCompetition\Competition\Application\DataTransformer\RacesToArray;
+use DevAway\KartCompetition\Competition\Domain\Exception\PilotNotFound;
 use DevAway\KartCompetition\Shared\Infrastructure\EntryPoint\EntryPointToJsonResponse;
 use Exception;
 use League\Tactician\CommandBus;
@@ -15,7 +17,7 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-class PostRace
+class PostRaces
 {
     public function __invoke(
         Request $request,
@@ -24,43 +26,47 @@ class PostRace
         RacesToArray $dataTransformer
     ): JsonResponse {
 
-        $params = json_decode($request->getContent(), true);
+        $param = json_decode($request->getContent(), true);
 
-        if (!$this->paramsAreValid($params)) {
-            return $responseFormat->error(
-                'Valid data not provided in request body',
-                Response::HTTP_UNPROCESSABLE_ENTITY
-            );
-        }
+        foreach ($param as $params) {
+            if (!$this->paramsAreValid($params)) {
+                return $responseFormat->error(
+                    'Valid data not provided in request body',
+                    Response::HTTP_UNPROCESSABLE_ENTITY
+                );
+            }
 
-        $getPilot = new ListPilotsByCriteria(["id" => $params["_id"]]);
-        $pilot = $commandBus->handle($getPilot);
+            $getPilot = new FindPilot($params["_id"]);
+            try {
+                $pilot = $commandBus->handle($getPilot);
+            } catch (PilotNotFound $e) {
+                if (!isset($pilot)) {
+                    $createPilot = new CreatePilot(
+                        $params["_id"],
+                        $params["picture"],
+                        $params["team"],
+                        $params["name"],
+                        $params["age"]
+                    );
 
-        if (empty($pilot)) {
-            $createPilot = new CreatePilot(
-                $params["_id"],
-                $params["picture"],
-                $params["team"],
-                $params["name"],
-                $params["age"]
+                    try {
+                        $commandBus->handle($createPilot);
+                    } catch (Exception $e) { // @codeCoverageIgnore
+                        return $responseFormat->error($e->getMessage(), Response::HTTP_INTERNAL_SERVER_ERROR); // @codeCoverageIgnore
+                    }
+                }
+            }
+
+            $commandRace = new CreateRace(
+                $params['_id'],
+                $params["races"]
             );
 
             try {
-                $commandBus->handle($createPilot);
+                $commandBus->handle($commandRace);
             } catch (Exception $e) { // @codeCoverageIgnore
                 return $responseFormat->error($e->getMessage(), Response::HTTP_INTERNAL_SERVER_ERROR); // @codeCoverageIgnore
             }
-        }
-
-        $commandRace = new CreateRace(
-            $params['_id'],
-            $params["races"]
-        );
-
-        try {
-            $commandBus->handle($commandRace);
-        } catch (Exception $e) { // @codeCoverageIgnore
-            return $responseFormat->error($e->getMessage(), Response::HTTP_INTERNAL_SERVER_ERROR); // @codeCoverageIgnore
         }
 
         return $responseFormat->response(["data" => "Created Races OK"], Response::HTTP_CREATED);

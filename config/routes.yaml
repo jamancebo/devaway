@@ -5,14 +5,6 @@ get_race:
   requirements:
     version: v1
 
-post_race:
-  path: /{version}/race
-  controller: DevAway\KartCompetition\Competition\Infrastructure\EntryPoint\Controller\PostRace
-  methods: POST
-  requirements:
-    version: v1
-
-
 post_races:
   path: /{version}/race
   controller: DevAway\KartCompetition\Competition\Infrastructure\EntryPoint\Controller\PostRaces
@@ -23,6 +15,13 @@ post_races:
 get_competicion_general_races:
   path: /{version}/general
   controller: DevAway\KartCompetition\Competition\Infrastructure\EntryPoint\Controller\GetGeneralCompetitionRaces
+  methods: GET
+  requirements:
+    version: v1
+
+get_pilot_races:
+  path: /{version}/pilot/{id}
+  controller: DevAway\KartCompetition\Competition\Infrastructure\EntryPoint\Controller\GetPilotRaces
   methods: GET
   requirements:
     version: v1
