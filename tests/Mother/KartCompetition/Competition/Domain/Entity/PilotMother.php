@@ -49,4 +49,16 @@ class PilotMother
             AgeMother::random()
         );
     }
+
+    /**
+     * @param int $race
+     * @return Pilot[]
+     */
+    public static function randomArray(int $pilot = 1): array
+    {
+        return array_map(
+            fn() => static::random(),
+            array_fill(0, $pilot, null)
+        );
+    }
 }

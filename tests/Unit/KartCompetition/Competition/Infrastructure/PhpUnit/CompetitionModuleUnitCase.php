@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace DevAway\Tests\Unit\KartCompetition\Competition\Infrastructure\PhpUnit;
 
+use DevAway\KartCompetition\Competition\Domain\Entity\Pilot;
 use DevAway\KartCompetition\Competition\Domain\Repository\PilotRepository;
 use DevAway\KartCompetition\Competition\Domain\Repository\RaceRepository;
 use DevAway\Tests\Unit\KartCompetition\Shared\Infrastructure\PhpUnit\UnitTestCase;
@@ -48,14 +49,15 @@ class CompetitionModuleUnitCase extends UnitTestCase
     }
 
     /**
+     * @param array $array
      * @return void
      */
-    public function shouldFindPilot(): void
+    public function shouldFindPilot(array $array): void
     {
         $this->pilotRepository()
             ->shouldReceive('findBy')
             ->once()
-            ->andReturn(['pilot' => 'found']);
+            ->andReturn($array);
     }
 
     /**
@@ -85,7 +87,6 @@ class CompetitionModuleUnitCase extends UnitTestCase
     {
         $this->raceRepository()
             ->shouldReceive('findBy')
-            ->once()
             ->andReturn($races);
     }
 
@@ -98,5 +99,37 @@ class CompetitionModuleUnitCase extends UnitTestCase
             ->shouldReceive('findBy')
             ->once()
             ->andReturn([]);
+    }
+
+    /**
+     * @return void
+     */
+    public function shouldUpdateRace(): void
+    {
+        $this->raceRepository()
+            ->shouldReceive('update');
+    }
+
+    /**
+     * @param Pilot $pilot
+     * @return void
+     */
+    public function shouldFindOnePilot(Pilot $pilot): void
+    {
+        $this->pilotRepository()
+            ->shouldReceive('find')
+            ->once()
+            ->andReturn($pilot);
+    }
+
+    /**
+     * @return void
+     */
+    public function shouldNotFindOnePilot(): void
+    {
+        $this->pilotRepository()
+            ->shouldReceive('find')
+            ->once()
+            ->andReturn(null);
     }
 }

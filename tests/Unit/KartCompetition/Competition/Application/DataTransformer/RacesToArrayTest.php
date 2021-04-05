@@ -17,9 +17,6 @@ class RacesToArrayTest extends CompetitionModuleUnitCase
         $this->dataTransformer = new RacesToArray();
     }
 
-    /**
-     * @return array
-     */
     public function testTransform(): array
     {
         $race = RaceMother::random();

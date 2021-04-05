@@ -42,6 +42,6 @@ class OrderMother
     public static function random(string $type): Order
     {
         $faker = Factory::create();
-        return self::create($faker->word, $type);
+        return self::create($faker->word(), $type);
     }
 }

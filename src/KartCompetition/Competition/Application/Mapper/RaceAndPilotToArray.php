@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace DevAway\KartCompetition\Competition\Application\Mapper;
 
-use DevAway\KartCompetition\Competition\Domain\Entity\Clasification;
 use Exception;
 
 class RaceAndPilotToArray

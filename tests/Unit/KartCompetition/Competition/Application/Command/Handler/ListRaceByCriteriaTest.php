@@ -7,6 +7,12 @@ namespace DevAway\Tests\Unit\KartCompetition\Competition\Application\Command\Han
 use DevAway\KartCompetition\Competition\Application\Command\Handler\FindAllRaceHandler;
 use DevAway\KartCompetition\Competition\Domain\Entity\Race;
 use DevAway\KartCompetition\Competition\Domain\Exception\RaceNotFound;
+use DevAway\KartCompetition\Competition\Domain\ValueObject\Id;
+use DevAway\KartCompetition\Competition\Domain\ValueObject\IdPilot;
+use DevAway\KartCompetition\Competition\Domain\ValueObject\Laps;
+use DevAway\KartCompetition\Competition\Domain\ValueObject\Points;
+use DevAway\KartCompetition\Competition\Domain\ValueObject\RaceName;
+use DevAway\KartCompetition\Competition\Domain\ValueObject\Time;
 use DevAway\Tests\Mother\KartCompetition\Competition\Application\Command\ListRaceMother;
 use DevAway\Tests\Mother\KartCompetition\Competition\Domain\Entity\RaceMother;
 use DevAway\Tests\Unit\KartCompetition\Competition\Infrastructure\PhpUnit\CompetitionModuleUnitCase;
@@ -14,7 +20,6 @@ use DevAway\Tests\Unit\KartCompetition\Competition\Infrastructure\PhpUnit\Compet
 class ListRaceByCriteriaTest extends CompetitionModuleUnitCase
 {
     private FindAllRaceHandler $handler;
-    public const ID = '203513b1-0836-360f-a4af-c25b6cf31111' ;
 
     public function setUp(): void
     {
@@ -33,6 +38,13 @@ class ListRaceByCriteriaTest extends CompetitionModuleUnitCase
         $this->assertIsArray($list);
         foreach ($list as $race) {
             $this->assertInstanceOf(Race::class, $race);
+            $this->assertInstanceOf(Id::class, $race->id());
+            $this->assertInstanceOf(IdPilot::class, $race->idPilot());
+            $this->assertInstanceOf(RaceName::class, $race->name());
+            $this->assertInstanceOf(Laps::class, $race->laps());
+            $this->assertInstanceOf(Time::class, $race->bestTime());
+            $this->assertInstanceOf(Time::class, $race->totalTime());
+            $this->assertInstanceOf(Points::class, $race->points());
         }
     }
 
@@ -44,5 +56,7 @@ class ListRaceByCriteriaTest extends CompetitionModuleUnitCase
         $this->shouldNotFindByRaces();
 
         $list = $this->handler->handle(ListRaceMother::random());
+
+        $this->assertEquals([], $list);
     }
 }

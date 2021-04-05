@@ -6,9 +6,11 @@ namespace DevAway\Tests\Unit\KartCompetition\Competition\Application\Command\Han
 
 use DevAway\KartCompetition\Competition\Application\Command\Handler\CreatePilotHandler;
 use DevAway\KartCompetition\Competition\Application\Exception\PilotExists;
+use DevAway\KartCompetition\Competition\Domain\Entity\Pilot;
 use DevAway\Tests\Mother\KartCompetition\Competition\Application\Command\CreatePilotMother;
 use DevAway\Tests\Mother\KartCompetition\Competition\Domain\Criteria\CriteriaMother;
 use DevAway\Tests\Mother\KartCompetition\Competition\Domain\Criteria\FiltersMother;
+use DevAway\Tests\Mother\KartCompetition\Competition\Domain\Entity\PilotMother;
 use DevAway\Tests\Unit\KartCompetition\Competition\Infrastructure\PhpUnit\CompetitionModuleUnitCase;
 
 class CreatePilotTest extends CompetitionModuleUnitCase
@@ -42,7 +44,7 @@ class CreatePilotTest extends CompetitionModuleUnitCase
         $command = CreatePilotMother::random();
 
         $this->expectException(PilotExists::class);
-        $this->shouldFindPilot();
+        $this->shouldFindPilot(PilotMother::randomArray());
 
         $this->handler->handle($command);
     }

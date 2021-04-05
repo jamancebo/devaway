@@ -24,6 +24,6 @@ class PilotNameMother
     public static function random(): PilotName
     {
         $faker = Factory::create('es_ES');
-        return self::create($faker->name);
+        return self::create($faker->name());
     }
 }

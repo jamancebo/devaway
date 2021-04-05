@@ -24,6 +24,6 @@ class IdPilotMother
     public static function random(): IdPilot
     {
         $faker = Factory::create('es_ES');
-        return self::create($faker->uuid);
+        return self::create($faker->uuid());
     }
 }

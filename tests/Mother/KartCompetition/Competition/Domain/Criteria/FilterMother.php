@@ -25,6 +25,6 @@ class FilterMother
     public static function random(): Filter
     {
         $faker = Factory::create();
-        return self::create($faker->word, $faker->word);
+        return self::create($faker->word(), $faker->word());
     }
 }

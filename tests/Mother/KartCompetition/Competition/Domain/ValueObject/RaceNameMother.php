@@ -24,6 +24,6 @@ class RaceNameMother
     public static function random(): RaceName
     {
         $faker = Factory::create('es_ES');
-        return self::create($faker->name);
+        return self::create($faker->name());
     }
 }

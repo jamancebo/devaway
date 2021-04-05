@@ -20,11 +20,12 @@ class GetPointsRaceTest extends CompetitionModuleUnitCase
     }
     public function testGetTotalTimeRace()
     {
-        $race = RaceMother::random();
-        $this->shouldNotFindByRaces();
-        $points = $this->service->execute($race->name(), $race->bestTime());
-
-        $this->assertInstanceOf(Points::class, $points);
-        $this->assertEquals(25, $points->value());
+        $races = RaceMother::randomArray(2);
+        foreach ($races as $race) {
+            $this->shouldFindListRaces($races);
+            $this->shouldUpdateRace();
+            $this->service->execute($race);
+            $this->assertNotNull($race->points());
+        }
     }
 }

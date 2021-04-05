@@ -24,9 +24,9 @@ class CreateRaceTest extends CompetitionModuleUnitCase
     {
         $command = CreateRaceMother::random();
 
-        $this->shouldFindPilot();
         $this->shouldCreateRace();
         $this->shouldFindListRaces(RaceMother::randomArray(2));
+        $this->shouldUpdateRace();
 
         $createdRaces = $this->handler->handle($command);
 
@@ -34,15 +34,5 @@ class CreateRaceTest extends CompetitionModuleUnitCase
             $this->assertEquals($command->idPilot(), $createRace->idPilot()->value());
             $this->assertEquals($command->races()[$key]["name"], $createRace->name()->value());
         }
-    }
-
-    public function testCreateRaceAndPilotNotFound()
-    {
-        $command = CreateRaceMother::random();
-
-        $this->expectException(PilotNotFound::class);
-        $this->shouldNotFindPilot();
-
-        $this->handler->handle($command);
     }
 }

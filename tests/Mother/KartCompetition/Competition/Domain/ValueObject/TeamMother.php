@@ -24,6 +24,6 @@ class TeamMother
     public static function random(): Team
     {
         $faker = Factory::create('es_ES');
-        return self::create($faker->city);
+        return self::create($faker->city());
     }
 }
