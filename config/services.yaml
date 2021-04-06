@@ -28,5 +28,9 @@ services:
         class: 'DevAway\KartCompetition\Competition\Infrastructure\Repository\MysqlPilotRepository'
         arguments: ['@doctrine.orm.entity_manager']
 
+    DevAway\KartCompetition\Competition\Domain\Service\JWTDecoder:
+        arguments:
+            - '%env(resolve:JWT_SECRET)%'
+
 
 

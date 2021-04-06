@@ -10,6 +10,7 @@ use FunctionalTester;
 
 class GetGeneralCompetitionRacesCest extends FunctionalCestCase
 {
+    private const TOKEN = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2wiOiJhZG1pbiIsImV4cCI6MTgwNjMwNjUyMH0.T0EnxMFv95p-n-HTUEmRDlHAJD7YUzXqZpc9YDP2824';
     /**
      * @param FunctionalTester $I
      */
@@ -28,8 +29,30 @@ class GetGeneralCompetitionRacesCest extends FunctionalCestCase
         $this->purge();
     }
 
+    /**
+     * @param FunctionalTester $I
+     */
+    public function testErrorWhenUnauthorized(FunctionalTester $I)
+    {
+        $I->sendGET('v1/general');
+        $I->seeResponseCodeIs(HttpCode::UNAUTHORIZED);
+    }
+
+    /**
+     * @param FunctionalTester $I
+     */
+    public function testErrorWhenUnauthorizedRole(FunctionalTester $I)
+    {
+        // phpcs:ignore Generic.Files.LineLength -- JWT cannot be shortened
+        $jwtRoleGuest = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2wiOiJndWVzdCIsImV4cCI6MTgwNjMwNjUyMH0.teAzg9HalGvJnGPcNWYGY7vTWZtbcmoCePJEEUwAPHY';
+        $I->haveHttpHeader('Authorization', 'Bearer ' . $jwtRoleGuest);
+        $I->sendGET('v1/general');
+        $I->seeResponseCodeIs(HttpCode::UNAUTHORIZED);
+    }
+
     public function testGetGeneralCompetition(FunctionalTester $I)
     {
+        $I->haveHttpHeader('Authorization', 'Bearer ' . self::TOKEN);
         $I->sendGet("/v1/general");
         $I->seeResponseCodeIs(HttpCode::OK);
         $I->seeResponseIsJson();

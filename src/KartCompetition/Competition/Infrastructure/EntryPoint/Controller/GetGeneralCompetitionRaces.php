@@ -10,12 +10,13 @@ use DevAway\KartCompetition\Competition\Application\DataTransformer\CompetitionT
 use DevAway\KartCompetition\Competition\Application\Service\GeneralClasification;
 use DevAway\KartCompetition\Competition\Domain\Exception\PilotNotFound;
 use DevAway\KartCompetition\Competition\Domain\Exception\RaceNotFound;
+use DevAway\KartCompetition\Shared\Infrastructure\EntryPoint\Controller\JwtAuthorizedController;
 use DevAway\KartCompetition\Shared\Infrastructure\EntryPoint\EntryPointToJsonResponse;
 use League\Tactician\CommandBus;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 
-class GetGeneralCompetitionRaces
+class GetGeneralCompetitionRaces extends JwtAuthorizedController
 {
     /**
      * @param Request $request
@@ -30,6 +31,10 @@ class GetGeneralCompetitionRaces
         EntryPointToJsonResponse $responseFormat,
         CompetitionToArray $dataTransformer
     ): JsonResponse {
+
+        if (!$this->isAuthorised('admin', $request)) {
+            return $responseFormat->unauthorizedError();
+        }
 
         $idPilotArray = [];
         $racesPilot = [];

@@ -11,12 +11,13 @@ use DevAway\KartCompetition\Competition\Application\DataTransformer\RacesToArray
 use DevAway\KartCompetition\Competition\Application\Mapper\RaceAndPilotToArray;
 use DevAway\KartCompetition\Competition\Domain\Exception\PilotNotFound;
 use DevAway\KartCompetition\Competition\Domain\Exception\RaceNotFound;
+use DevAway\KartCompetition\Shared\Infrastructure\EntryPoint\Controller\JwtAuthorizedController;
 use DevAway\KartCompetition\Shared\Infrastructure\EntryPoint\EntryPointToJsonResponse;
 use League\Tactician\CommandBus;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 
-class GetPilotRaces
+class GetPilotRaces extends JwtAuthorizedController
 {
     /**
      * @param string $id
@@ -37,6 +38,10 @@ class GetPilotRaces
         PilotToArray $pilotDataTransformer,
         RaceAndPilotToArray $mapper
     ): JsonResponse {
+
+        if (!$this->isAuthorised('admin', $request)) {
+            return $responseFormat->unauthorizedError();
+        }
 
         $arrayRaces = [];
         $command = new ListPilotsByCriteria(['id' => $id]);

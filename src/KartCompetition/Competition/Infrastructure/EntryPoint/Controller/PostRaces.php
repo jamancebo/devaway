@@ -10,6 +10,7 @@ use DevAway\KartCompetition\Competition\Application\Command\FindPilot;
 use DevAway\KartCompetition\Competition\Application\Command\ListPilotsByCriteria;
 use DevAway\KartCompetition\Competition\Application\DataTransformer\RacesToArray;
 use DevAway\KartCompetition\Competition\Domain\Exception\PilotNotFound;
+use DevAway\KartCompetition\Shared\Infrastructure\EntryPoint\Controller\JwtAuthorizedController;
 use DevAway\KartCompetition\Shared\Infrastructure\EntryPoint\EntryPointToJsonResponse;
 use Exception;
 use League\Tactician\CommandBus;
@@ -17,7 +18,7 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-class PostRaces
+class PostRaces extends JwtAuthorizedController
 {
     public function __invoke(
         Request $request,
@@ -25,6 +26,10 @@ class PostRaces
         EntryPointToJsonResponse $responseFormat,
         RacesToArray $dataTransformer
     ): JsonResponse {
+
+        if (!$this->isAuthorised('admin', $request)) {
+            return $responseFormat->unauthorizedError();
+        }
 
         $param = json_decode($request->getContent(), true);
 

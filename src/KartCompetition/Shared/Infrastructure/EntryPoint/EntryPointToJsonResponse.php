@@ -6,6 +6,7 @@ namespace DevAway\KartCompetition\Shared\Infrastructure\EntryPoint;
 
 use DevAway\KartCompetition\Shared\Domain\EntryPoint\EntryPointResponse;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Response;
 
 class EntryPointToJsonResponse implements EntryPointResponse
 {
@@ -37,5 +38,16 @@ class EntryPointToJsonResponse implements EntryPointResponse
             'status' => $code
         ];
         return new JsonResponse($jsonresponse, $code);
+    }
+
+    /**
+     * @return JsonResponse
+     */
+    public function unauthorizedError(): JsonResponse
+    {
+        return $this->error(
+            'Unauthorized',
+            Response::HTTP_UNAUTHORIZED
+        );
     }
 }
