@@ -17,22 +17,10 @@ interface RaceRepository
     public function create(Race $race): void;
 
     /**
-     * @param Id $id
-     * @throws RaceNotFound
-     * @return Race|null
-     */
-    public function find(Id $id): ?Race;
-
-    /**
      * @param Criteria $criteria
      * @return Race[]
      */
     public function findBy(Criteria $criteria): array;
-
-    /**
-     * @return array
-     */
-    public function list(): array;
 
     /**
      * @param Race $race
