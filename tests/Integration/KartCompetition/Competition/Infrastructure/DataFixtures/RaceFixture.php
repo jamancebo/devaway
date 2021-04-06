@@ -43,7 +43,7 @@ class RaceFixture implements FixtureInterface
         $laps = LapsMother::random(5);
         $bestTime = TimeMother::random();
         $totalTime = TimeMother::random();
-        $points = PointsMother::random();
+        $points = PointsMother::create(10);
 
         $race = RaceMother::create(
             $id,

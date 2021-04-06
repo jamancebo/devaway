@@ -10,9 +10,7 @@ use FunctionalTester;
 
 class PostRaceCest extends FunctionalCestCase
 {
-    /**
-     * @param FunctionalTester $I
-     */
+
     public function _before(FunctionalTester $I)
     {
         parent::setUp($I);
@@ -20,41 +18,63 @@ class PostRaceCest extends FunctionalCestCase
         $this->loadFixtures();
     }
 
-    /**
-     * @param FunctionalTester $I
-     */
     public function _after(FunctionalTester $I)
     {
         $this->purge();
     }
 
-    /**
-     * @param FunctionalTester $I
-     */
+
     public function testErrorOnEmptyRequestBody(FunctionalTester $I)
     {
+        $races = [
+            [
+                "_id" => "5fd7dbd8ce3a40582fb9ee6b",
+                "picture" => "http://placehold.it/64x64",
+                "age" => 23,
+                "races" => [
+                    "name" => "Race 0",
+                    "laps" => [
+                        [
+                            "time" => "00:10:31.078"
+                        ],
+                        [
+                            "time" => "00:11:31.078"
+                        ],
+                        [
+                            "time" => "00:09:31.078"
+                        ]
+                    ]
+                ]
+            ]
+        ];
         $I->haveHttpHeader('Content-Type', 'application/json');
-        $I->sendPost('v1/race', '');
+        $I->sendPost('v1/race', $races);
         $I->seeResponseCodeIs(HttpCode::UNPROCESSABLE_ENTITY);
     }
 
+
     public function testPost(FunctionalTester $I)
     {
-        $race = [
-            "_id" => "5fd7dbd8ce3a40582fb9ee6b",
-            "picture" => "http://placehold.it/64x64",
-            "age" => 23,
-            'name' => 'Juan de Angel',
-            "team" => "PROTODYNE",
-            'races' => [
-                [
-                    'name' => "RACE 0",
-                    'laps' => [
-                        [
-                            'time' => "00:08:06.484"
-                        ],
-                        [
-                            'time' => "00:07:06.484"
+        $races = [
+            [
+                "_id" => "5fd7dbd8ce3a40582fb9ee6b",
+                "picture" => "http://placehold.it/64x64",
+                "age" => 23,
+                "name" => "Cooke Rivers",
+                "team" => "PROTODYNE",
+                "races" => [
+                    [
+                        "name" => "Race 0",
+                        "laps" => [
+                            [
+                                "time" => "00:10:31.078"
+                            ],
+                            [
+                                "time" => "00:11:31.078"
+                            ],
+                            [
+                                "time" => "00:09:31.078"
+                            ]
                         ]
                     ]
                 ]
@@ -62,9 +82,9 @@ class PostRaceCest extends FunctionalCestCase
         ];
 
         $I->haveHttpHeader('Content-Type', 'application/json');
-        $I->sendPOST('/v1/race', $race);
+        $I->sendPOST('/v1/race', $races);
 
-        $I->seeResponseCodeIs(HttpCode::CREATED);
         $I->seeResponseIsJson();
+        $I->seeResponseCodeIs(HttpCode::CREATED);
     }
 }

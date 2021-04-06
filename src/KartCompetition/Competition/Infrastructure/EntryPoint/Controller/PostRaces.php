@@ -68,7 +68,6 @@ class PostRaces
                 return $responseFormat->error($e->getMessage(), Response::HTTP_INTERNAL_SERVER_ERROR); // @codeCoverageIgnore
             }
         }
-
         return $responseFormat->response(["data" => "Created Races OK"], Response::HTTP_CREATED);
     }
 
