@@ -40,4 +40,6 @@ Estructura para guardar una competición
      ]
     ]
 ]
+
+**La aplicación tiene un token de seguridad. Este token es el siguiente: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2wiOiJhZG1pbiIsImV4cCI6MTgwNjMwNjUyMH0.T5n3amhMyqXkdWsexSWTj46Dz3GB4y8Ahx98dz2KtD8**
 `
