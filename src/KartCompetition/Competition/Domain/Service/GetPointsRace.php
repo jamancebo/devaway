@@ -35,6 +35,7 @@ class GetPointsRace
     public function execute(Race $race): void
     {
         $this->updateGeneralPoints($race);
+        $this->updateBestTimePoints($race);
     }
 
     /**
@@ -57,5 +58,24 @@ class GetPointsRace
             }
             $this->repository->update($item);
         }
+    }
+
+    /**
+     * @param Race $race
+     * @throws Exception
+     */
+    private function updateBestTimePoints(Race $race): void
+    {
+        $races = $this->repository->findBy(
+            Criteria::create(
+                Filters::fromValues(["id" => $race->id()->value()]),
+                Orders::fromValues(['bestTime' => 'ASC']),
+                null,
+                1
+            )
+        );
+
+        $races[0]->updatePoints(Points::fromInt($races[0]->points()->value() + ScoreRace::BESTTIME));
+        $this->repository->update($races[0]);
     }
 }
