@@ -18,4 +18,6 @@ class ScoreRace
         2,
         1
     ];
+
+    public const BESTTIME = 1;
 }
